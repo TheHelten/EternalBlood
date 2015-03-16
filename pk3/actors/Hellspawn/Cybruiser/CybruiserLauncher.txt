@@ -1,0 +1,268 @@
+//Cybruiser Rocket Launcher.
+Actor "Rocket-Launcher" : Weapon
+{
+	-WEAPON.NOAUTOFIRE //Inconvenient.
+	+INVENTORY.UNDROPPABLE
+	+AMMO_OPTIONAL
+	+ALT_AMMO_OPTIONAL
+	Inventory.PickupMessage "You got the arm of a Cybruiser."
+	Obituary "%o was blown apart by %k's Projectiles."
+	States
+	{
+	ReadySet:
+		TNT1 A 8
+	NoReady:
+		TNT1 A 1 A_WeaponReady
+	Ready:
+		CYBW A 0 A_TakeInventory("CancelableBoom",1)
+		CYBW A 0 A_JumpIfInventory("CybruiserFireMode",2,"NoReady")
+		CYBW A 1 A_WeaponReady
+		Loop
+	Deselect:
+		CYBW A 1 A_Lower
+		CYBW A 0 A_Lower
+		Loop
+	Select:
+		CYBW A 1 A_Raise
+		CYBW A 0 A_Raise
+		Loop
+	Fire:
+		CYBW A 0 A_JumpIfInventory("CybruiserFireMode",2,"Fire3")
+		CYBW A 0 A_JumpIfInventory("CybruiserFireMode",1,"Fire2")
+		CYBW A 0 A_PlayWeaponSound("ShockRocket/Fire")
+		CYBW A 2 A_FireCustomMissile("Cybruiser-Rocket",0,0,16,0,28)
+		CYBW BCD 5 bright
+		CYBW EA 5
+		CYBW A 0 A_PlayWeaponSound("Cybruiser/Reload")
+		CYBW A 1 offset (0, 20)
+		CYBW A 1 offset (0, 40)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 140)
+		TNT1 A 8
+		CYBW A 1 offset (0, 140)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 40)
+		CYBW A 12
+		Goto Ready
+	Fire2:
+		CYBW A 0 A_PlayWeaponSound("Cybruiser/PlasmaFire")
+		CYBW A 2 A_FireCustomMissile("Arc-Plasma",0,0,16,0,28)
+		CYBB BCD 5 bright
+		CYBW EA 5
+		CYBW A 0 A_PlayWeaponSound("Cybruiser/Reload")
+		CYBW A 1 offset (0, 20)
+		CYBW A 1 offset (0, 40)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 140)
+		TNT1 A 8
+		CYBW A 1 offset (0, 140)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 40)
+		CYBW A 24
+		Goto Ready
+	Fire3:
+	    TNT1 A 0 A_JumpIfInventory("CancelableBoom",1,"ReadySet")
+		TNT1 A 0 A_GiveInventory("CancelableBoom",1)
+		TNT1 A 8 A_PlayWeaponSound("Cybruiser/Beep1")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_ReFire
+		TNT1 A 0 A_PlayWeaponSound("Cybruiser/Beep2")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_ReFire
+		TNT1 A 0 A_PlayWeaponSound("Cybruiser/Beep3")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_ReFire
+		TNT1 A 0 A_Explode(200,200)
+		TNT1 A 0 //Break between Explosion and Death.
+		TNT1 A 0 DamageThing(1000000) //You will NOT live through this.
+		Goto Ready
+	AltFire:
+		CYBW A 0 A_JumpIfInventory("CybruiserFireMode",2,"FireModeOff")
+		CYBW A 0 A_JumpIfInventory("CybruiserFireMode",1,"FireModeThree")
+		Goto FireModeTwo
+	FireModeOff:
+		TNT1 A 0 A_TakeInventory ("CancelableBoom", 1)
+		TNT1 A 0 A_PlayWeaponSound("Cybruiser/Reload")
+		TNT1 A 8 A_TakeInventory("CybruiserFireMode",2)
+		CYBW A 1 offset (0, 140)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 40)
+		CYBW A 10
+		Goto Ready
+	FireModeTwo:
+		CYBW A 0 A_PlayWeaponSound("Cybruiser/Reload")
+		CYBW A 1 offset (0, 20)
+		CYBW A 1 offset (0, 40)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 140)
+		TNT1 A 8 A_GiveInventory("CybruiserFireMode",1)
+		CYBW A 1 offset (0, 140)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 40)
+		CYBW A 10
+		Goto Ready
+	FireModeThree:
+		CYBW A 1 offset (0, 20)
+		CYBW A 1 offset (0, 40)
+		CYBW A 1 offset (0, 60)
+		CYBW A 1 offset (0, 80)
+		CYBW A 1 offset (0, 100)
+		CYBW A 1 offset (0, 120)
+		CYBW A 1 offset (0, 140)
+		TNT1 A 14 A_GiveInventory("CybruiserFireMode",1)
+		Goto Ready
+	Spawn:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor CancelableBoom : Inventory {}
+
+Actor CybruiserFireMode : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 2
+}
+
+Actor "Cybruiser-Rocket" : "Shock-Rocket"
+{
+  Obituary "%o was leveled by %k's Rocket."
+  SeeSound "" //NO SEE SOUND
+  Speed 40
+  Damage (25)
+  DamageType "CyRocket"
+  -ROCKETTRAIL
+  States
+  {
+  Spawn:
+	MISL A 0 bright A_SpawnItemEx("ShockTrail", -3, Random(-4, 4), Random(-4, 4), Random(-4,-12), 0, 0, 0, 0, 0)
+	MISL A 0 bright A_SpawnItemEx("ShockTrail", -3, Random(-4, 4), Random(-4, 4), Random(-4,-12), 0, 0, 0, 0, 0)
+    MISL A 1 bright A_SpawnItemEx("ShockTrail", -3, Random(-4, 4), Random(-4, 4), Random(-4,-12), 0, 0, 0, 0, 0)
+    Loop
+  Death:
+    TNT1 A 0 bright A_PlaySound("ShockRocket/Explosion")
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("ShockShrapnel",0,Random(-64,64),Random(0,360),2,Random(0,360))
+    TNT1 A 0 bright A_Explode(75, 105)
+	TNT1 A 0 bright A_SpawnItemEx("ShockSmoke",0,0,4)
+	TNT1 A 0 bright A_SpawnItemEx("ShockDeath",0,0,4)
+	TNT1 AA 0 bright A_SpawnItemEx("ShockSplode",0,0,4)
+    Stop
+  }
+}
+
+Actor "Arc-Plasma"
+{
+   Radius 6
+   Height 12
+   Speed 30
+   Damage (10) //It's damage is dealt by explosive radius.
+   Scale 2.0
+   DamageType "CyPlasma"
+   PROJECTILE
+   +SKYEXPLODE
+   +LOWGRAVITY
+   +FORCEXYBILLBOARD
+   //+NODAMAGETHRUST
+   -NOGRAVITY
+   DeathSound "Cybruiser/PlasmaHit"
+   RenderStyle Add
+   //ProjectileKickback 0 //BECAUSE IT ISN'T IN ZAND.
+   States
+   {
+   Spawn:
+      TRPL A 0 bright ThrustThingZ(0,18,0,1)
+	  TRPL A 0 bright
+	  TRPL A 1 bright A_SpawnItemEx("Arc-PlasmaTrail1",0,0,0)
+	  TRPL B 1 bright A_SpawnItemEx("Arc-PlasmaTrail2",0,0,0)
+	  TRPL C 1 bright A_SpawnItemEx("Arc-PlasmaTrail1",0,0,0)
+	  TRPL D 1 bright A_SpawnItemEx("Arc-PlasmaTrail2",0,0,0)
+      Goto Spawn+1
+   Death:
+	  TNT1 A 0 bright A_ChangeFlag("LOWGRAVITY",0)
+	  TNT1 A 0 bright A_ChangeFlag("NOGRAVITY",1)
+	  TNT1 A 0 bright A_Explode(40,60)
+      PLSS ABCDEFGHIJKLMNOP 1 bright
+      Stop
+   }
+}
+
+Actor "Arc-PlasmaTrail1"
+{   
+   Radius 0
+   Height 0
+   Speed 0
+   PROJECTILE
+   +NOCLIP
+   +NOGRAVITY
+   +NOBLOCKMAP
+   +NOTIMEFREEZE
+   +FORCEXYBILLBOARD
+   Scale 2.0
+   RenderStyle Translucent
+   Alpha 0.90
+   States
+   {
+   Spawn:
+   Death:
+	  TRPL ABCD 1 bright A_FadeOut(0.05)
+	  Stop
+   }
+}
+
+Actor "Arc-PlasmaTrail2"
+{   
+   Radius 0
+   Height 0
+   Speed 0
+   PROJECTILE
+   +NOCLIP
+   +NOGRAVITY
+   +NOBLOCKMAP
+   +NOTIMEFREEZE
+   +FORCEXYBILLBOARD
+   Scale 2.0
+   RenderStyle Translucent
+   Alpha 0.90
+   States
+   {
+   Spawn:
+   Death:
+   	  TRPL D 1 bright A_SetTranslucent(0.85)
+	  TRPL C 1 bright A_SetTranslucent(0.8)
+	  TRPL B 1 bright A_SetTranslucent(0.75)
+	  TRPL A 1 bright A_SetTranslucent(0.7)
+	  TRPL D 1 bright A_SetTranslucent(0.65)
+	  TRPL C 1 bright A_SetTranslucent(0.6)
+	  TRPL B 1 bright A_SetTranslucent(0.55)
+	  TRPL A 1 bright A_SetTranslucent(0.5)
+	  TRPL D 1 bright A_SetTranslucent(0.45)
+	  TRPL C 1 bright A_SetTranslucent(0.4)
+	  TRPL B 1 bright A_SetTranslucent(0.35)
+	  TRPL A 1 bright A_SetTranslucent(0.3)
+	  TRPL D 1 bright A_SetTranslucent(0.25)
+	  TRPL C 1 bright A_SetTranslucent(0.2)
+	  TRPL B 1 bright A_SetTranslucent(0.15)
+	  TRPL A 1 bright A_SetTranslucent(0.1)
+	  TRPL D 1 bright A_SetTranslucent(0.05)
+	  Stop
+   }
+}

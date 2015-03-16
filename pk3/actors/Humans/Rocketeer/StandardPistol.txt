@@ -1,0 +1,48 @@
+//Standard Pistol.
+Actor "Rocketeer-Pistol" : Weapon
+{
+	Obituary "%o couldn't dodge %k's Pistol fire."
+	+WEAPON.WIMPY_WEAPON
+	+AMMO_OPTIONAL
+	+INVENTORY.UNDROPPABLE
+	Weapon.SlotNumber 1
+	AttackSound "RCKTPistol/Fire"
+	Weapon.AmmoType1 "RocketAmmunition"
+	Weapon.AmmoUse1 0
+	Weapon.AmmoType2 "FlakAmmo"
+	Weapon.AmmoUse2 0
+	States
+	{ 
+	Ready:
+        MPSG A 1 A_WeaponReady
+        Loop
+	Deselect:
+        MPSG A 1 A_Lower
+		MPSG A 0 A_Lower
+        Loop
+	Select:
+        MPSG A 1 A_Raise
+		MPSG A 0 A_Raise
+        Loop
+	Fire:
+        MPSF A 0 bright A_FireBullets(1.2,1.2,-1,3,"BulletPuff",1)
+		MPSF A 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        MPSG BCD 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		MPSG E 0 A_PlaySound("RCKTPistol/Click")
+		MPSG EFGHIJKLM 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        Goto Ready
+	AltFire:
+        MPSF A 0 bright A_FireBullets(1.2,1.2,-1,3,"BulletPuff",1)
+        MPSF A 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        MPSG BCD 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        MPSF A 0 bright A_FireBullets(2.4,2.4,-1,3,"BulletPuff",1)
+        MPSF A 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        MPSG BCD 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        MPSF A 0 bright A_FireBullets(3.6,3.6,-1,3,"BulletPuff",1)
+        MPSF A 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        MPSG BCD 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		MPSG E 0 A_PlaySound("RCKTPistol/Click")
+		MPSG EFGHIJKLMAAAAAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+        Goto Ready
+	}
+}

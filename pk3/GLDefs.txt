@@ -1,0 +1,1793 @@
+/* GLDEFS --- The one thing the old version lacked quite a bit. */
+
+//First the Glowing-Flats
+Glow
+{
+ Flats
+  {
+   LAVA1 
+   LAVA2 
+   LAVA3 
+   LAVA4
+   LAV10
+   NUKAGE1 
+   NUKAGE2 
+   NUKAGE3
+   RROCK01
+   RROCK02
+   RROCK05
+   RROCK06
+   RROCK07
+   RROCK08
+   SLIME09
+   SLIME10
+   SLIME11
+   SLIME12
+   WQLAVA
+   WSLIME01
+   }
+} 
+
+//Then the actual Dynamic Lighting
+pointlight MARINELITE
+{
+    color 0.8 0.8 0.0
+    size 50
+}
+
+object ZSecClass
+{
+    frame ZSECF { light MARINELITE }
+}
+
+object GhostClass
+{
+    frame PLA3F { light MARINELITE }
+}
+
+object RocketeerClass
+{
+    frame PL5SF { light MARINELITE }
+}
+
+object GoliathClass
+{
+    frame TERMH { light MARINELITE }
+	frame TERMI { light MARINELITE }
+	frame TERMF { light MARINELITE }
+}
+
+//Patch-Kit
+
+pointlight HealRayLight
+{
+    color 0.0 0.0 0.6
+    size 8
+}
+
+object HealBolt
+{
+frame HEAPA { light HealRayLight }
+}
+
+//Flare-Gun
+
+flickerlight FlareLight
+{
+    color 1.0 0.2 0.2
+    size 15
+	secondarySize 30
+	chance 0
+	offset 0 0 0
+}
+
+flickerlight FlareBoom1
+{
+    color 1.05 0.2 0.2
+    size 25
+	secondarySize 40
+	chance 0
+}
+
+flickerlight FlareBoom3
+{
+    color 1.1 0.2 0.2
+    size 35
+	secondarySize 50
+	chance 0
+}
+
+flickerlight FlareBoom4
+{
+    color 1.15 0.2 0.2
+    size 45
+	secondarySize 60
+	chance 0
+}
+
+object Flare
+{
+frame FLARA { light FlareLight }
+frame FREXA { light FlareBoom1 }
+frame FREXB { light FlareBoom2 }
+frame FREXC { light FlareBoom3 }
+}
+
+flickerlight FlareSparkLight
+{
+    color 0.5 0.075 0.075
+    size 6
+	secondarySize 10
+	chance 0
+	offset 0 0 0
+}
+
+object FlarePop
+{
+frame FLARA { light FlareSparkLight }
+frame FLARB { light FlareSparkLight }
+}
+
+//Plasma Rifle from Commando
+
+pointlight PLASMABOLT
+{
+    color 0.0 1.0 0.1
+    size 28
+}
+
+flickerlight PLASMAB_X1
+{
+    color 0.2 1.0 0.2
+    size 32
+    secondarySize 36
+    chance 0.4
+}
+
+flickerlight PLASMAB_X2
+{
+    color 0.2 0.8 0.2
+    size 40
+    secondarySize 44
+    chance 0.4
+}
+
+flickerlight PLASMAB_X3
+{
+    color 0.1 0.5 0.1
+    size 32
+    secondarySize 36
+    chance 0.4
+}
+
+flickerlight PLASMAB_X4
+{
+    color 0.0 0.2 0.0
+    size 4
+    secondarySize 8
+    chance 0.4
+}
+
+object PlasmaRifleShot
+{
+    frame GREPA { light PLASMABOLT }
+	frame GREPB { light PLASMABOLT }
+	frame GREPC { light PLASMABOLT }
+	frame GREPD { light PLASMABOLT }
+	frame GREPE { light PLASMABOLT }
+	frame GREPF { light PLASMABOLT }
+
+    frame GREDA { light PLASMAB_X1 }
+    frame GREDB { light PLASMAB_X1 }
+    frame GREDC { light PLASMAB_X1 }
+    frame GREDD { light PLASMAB_X1 }
+    frame GREDE { light PLASMAB_X2 }
+    frame GREDF { light PLASMAB_X2 }
+    frame GREDG { light PLASMAB_X2 }
+    frame GREDH { light PLASMAB_X2 }
+    frame GREDI { light PLASMAB_X3 }
+    frame GREDJ { light PLASMAB_X3 }
+    frame GREDK { light PLASMAB_X3 }
+    frame GREDL { light PLASMAB_X3 }
+    frame GREDM { light PLASMAB_X4 }
+    frame GREDN { light PLASMAB_X4 }
+    frame GREDO { light PLASMAB_X4 }
+    frame GREDP { light PLASMAB_X4 }
+}
+
+pointlight WPLASMABOLT
+{
+    color 0.0 1.0 0.1
+    size 14
+}
+
+flickerlight WPLASMAB_X1
+{
+    color 0.2 1.0 0.2
+    size 16
+    secondarySize 36
+    chance 0.4
+}
+
+flickerlight WPLASMAB_X2
+{
+    color 0.2 0.8 0.2
+    size 20
+    secondarySize 44
+    chance 0.4
+}
+
+flickerlight WPLASMAB_X3
+{
+    color 0.1 0.5 0.1
+    size 16
+    secondarySize 36
+    chance 0.4
+}
+
+flickerlight WPLASMAB_X4
+{
+    color 0.0 0.2 0.0
+    size 2
+    secondarySize 8
+    chance 0.4
+}
+
+object WeakPlasmaRifleShot
+{
+    frame GREPA { light WPLASMABOLT }
+	frame GREPB { light WPLASMABOLT }
+	frame GREPC { light WPLASMABOLT }
+	frame GREPD { light WPLASMABOLT }
+	frame GREPE { light WPLASMABOLT }
+	frame GREPF { light WPLASMABOLT }
+
+    frame GREDA { light WPLASMAB_X1 }
+    frame GREDB { light WPLASMAB_X1 }
+    frame GREDC { light WPLASMAB_X1 }
+    frame GREDD { light WPLASMAB_X1 }
+    frame GREDE { light WPLASMAB_X2 }
+    frame GREDF { light WPLASMAB_X2 }
+    frame GREDG { light WPLASMAB_X2 }
+    frame GREDH { light WPLASMAB_X2 }
+    frame GREDI { light WPLASMAB_X3 }
+    frame GREDJ { light WPLASMAB_X3 }
+    frame GREDK { light WPLASMAB_X3 }
+    frame GREDL { light WPLASMAB_X3 }
+    frame GREDM { light WPLASMAB_X4 }
+    frame GREDN { light WPLASMAB_X4 }
+    frame GREDO { light WPLASMAB_X4 }
+    frame GREDP { light WPLASMAB_X4 }
+}
+
+//Eternal Blood Brightmaps! Hell yes. This is a neat feature. :>
+
+brightmap sprite HVRGA0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRA0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRB0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRC0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRd0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRE0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRF0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRG0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRH0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite HVRRI0
+{
+  map "brightmaps/weapons/HVRBA0.png"
+}
+
+brightmap sprite AMMGA0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMGB0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMGC0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMGD0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUA0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUB0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUC0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUD0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUE0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUF0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUG0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUH0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUI0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUJ0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUK0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUL0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUM0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUN0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUO0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUP0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUQ0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMMUR0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEAGA0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEAGB0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEAGC0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEAGD0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALA0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALB0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALC0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALD0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALE0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALF0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALG0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALH0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALI0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALJ0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALK0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALL0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALM0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALN0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALO0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALP0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALQ0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALR0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALS0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite HEALT0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite AMHBA0
+{
+  map "brightmaps/weapons/PPBMA0.png"
+}
+
+brightmap sprite PLBGA0
+{
+  map "brightmaps/weapons/PLBBA0.png"
+}
+
+brightmap sprite PLBGD0
+{
+  map "brightmaps/weapons/PLBBA0.png"
+}
+
+brightmap sprite PLBGE0
+{
+  map "brightmaps/weapons/PLBBA0.png"
+}
+
+brightmap sprite PLBGF0
+{
+  map "brightmaps/weapons/PLBBA0.png"
+}
+
+//Goliath weapon brightmaps...
+brightmap sprite GLEAA0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESA0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESB0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESC0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESD0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESE0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESF0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESG0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESH0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESI0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLESJ0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+//Now for the firing maps (Still Goliath's left arm.)
+brightmap sprite GLF1B0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1C0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1D0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1E0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1F0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1G0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1H0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1I0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1J0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF1K0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2B0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2C0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2D0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2E0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2F0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2G0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2H0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2I0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2J0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF2K0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3B0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3C0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3D0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3E0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3F0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3G0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3H0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3I0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3J0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+brightmap sprite GLF3K0
+{
+  map "brightmaps/weapons/GLCLA0.png"
+}
+
+//Frankly, the Goliath brightmaps were annoying to fix up, but credits go to the maker.
+BrightMap Sprite TERMA1
+{
+Map "brightmaps/goliath/BMTA1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMA2
+{
+Map "brightmaps/goliath/BMTA2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMA3
+{
+Map "brightmaps/goliath/BMTA3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMA6
+{
+Map "brightmaps/goliath/BMTA6.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMA7
+{
+Map "brightmaps/goliath/BMTA7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMA8
+{
+Map "brightmaps/goliath/BMTA8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMB1
+{
+Map "brightmaps/goliath/BMTB1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMB2
+{
+Map "brightmaps/goliath/BMTB2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMB3
+{
+Map "brightmaps/goliath/BMTB3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMB7
+{
+Map "brightmaps/goliath/BMTB7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMB8
+{
+Map "brightmaps/goliath/BMTB8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMC1
+{
+Map "brightmaps/goliath/BMTC1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMC2
+{
+Map "brightmaps/goliath/BMTC2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMC3
+{
+Map "brightmaps/goliath/BMTC3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMC4
+{
+Map "brightmaps/goliath/BMTC4.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMC7
+{
+Map "brightmaps/goliath/BMTC7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMC8
+{
+Map "brightmaps/goliath/BMTC8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMD1
+{
+Map "brightmaps/goliath/BMTD1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMD2
+{
+Map "brightmaps/goliath/BMTD2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMD3
+{
+Map "brightmaps/goliath/BMTD3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMD7
+{
+Map "brightmaps/goliath/BMTD7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMD8
+{
+Map "brightmaps/goliath/BMTD8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERME1
+{
+Map "brightmaps/goliath/BMTE1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERME2
+{
+Map "brightmaps/goliath/BMTE2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERME3
+{
+Map "brightmaps/goliath/BMTE3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERME7
+{
+Map "brightmaps/goliath/BMTE7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERME8
+{
+Map "brightmaps/goliath/BMTE8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF1
+{
+Map "brightmaps/goliath/BMTF1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF2
+{
+Map "brightmaps/goliath/BMTF2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF3
+{
+Map "brightmaps/goliath/BMTF3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF4
+{
+Map "brightmaps/goliath/BMTF4.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF5
+{
+Map "brightmaps/goliath/BMTF5.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF6
+{
+Map "brightmaps/goliath/BMTF6.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF7
+{
+Map "brightmaps/goliath/BMTF7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMF8
+{
+Map "brightmaps/goliath/BMTF8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMG1
+{
+Map "brightmaps/goliath/BMTG1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMG2
+{
+Map "brightmaps/goliath/BMTG2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMG3
+{
+Map "brightmaps/goliath/BMTG3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMG7
+{
+Map "brightmaps/goliath/BMTG7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMG8
+{
+Map "brightmaps/goliath/BMTG8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH1
+{
+Map "brightmaps/goliath/BMTH1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH2
+{
+Map "brightmaps/goliath/BMTH2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH3
+{
+Map "brightmaps/goliath/BMTH3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH4
+{
+Map "brightmaps/goliath/BMTH4.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH5
+{
+Map "brightmaps/goliath/BMTH5.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH6
+{
+Map "brightmaps/goliath/BMTH6.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH7
+{
+Map "brightmaps/goliath/BMTH7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMH8
+{
+Map "brightmaps/goliath/BMTH8.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI1
+{
+Map "brightmaps/goliath/BMTI1.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI2
+{
+Map "brightmaps/goliath/BMTI2.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI3
+{
+Map "brightmaps/goliath/BMTI3.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI4
+{
+Map "brightmaps/goliath/BMTI4.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI5
+{
+Map "brightmaps/goliath/BMTI5.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI6
+{
+Map "brightmaps/goliath/BMTI6.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI7
+{
+Map "brightmaps/goliath/BMTI7.png"
+DisableFullBright
+}
+
+BrightMap Sprite TERMI8
+{
+Map "brightmaps/goliath/BMTI8.png"
+DisableFullBright
+}
+
+//Doom IWAD Brightmaps! Thank you Virtue, you're a incredible individual!\\
+brightmap texture COMP2
+{
+	map "brightmaps/stuff/comp2.png"
+}	
+
+brightmap texture COMPSTA1
+{
+	map "brightmaps/stuff/compsta1.png"
+}
+
+brightmap texture COMPSTA2
+{
+	map "brightmaps/stuff/compsta2.png"
+}
+
+brightmap texture COMPTALL
+{
+	map "brightmaps/stuff/comptall.png"
+}
+
+brightmap texture COMPUTE1
+{
+	map "brightmaps/stuff/compute1.png"
+}
+
+brightmap texture COMPUTE2
+{
+	map "brightmaps/stuff/compute2.png"
+}
+
+brightmap texture COMPUTE3
+{
+	map "brightmaps/stuff/compute3.png"
+}
+
+brightmap texture DOORYEL
+{
+	map "brightmaps/stuff/dooryel.png"
+}
+
+brightmap texture DOORRED
+{
+	map "brightmaps/stuff/dooryel.png"
+}
+
+brightmap texture DOORBLU
+{
+	map "brightmaps/stuff/dooryel.png"
+}
+
+brightmap texture EXITDOOR
+{
+	map "brightmaps/stuff/exitdoor.png"
+}
+
+brightmap texture EXITSIGN
+{
+	map "brightmaps/stuff/exitsign.png"
+}
+
+brightmap texture liteblu1
+{
+	map "brightmaps/stuff/liteblu1.png"
+}
+
+brightmap texture liteblu2
+{
+	map "brightmaps/stuff/liteblu2.png"
+}
+
+brightmap texture liteblu3
+{
+	map "brightmaps/stuff/liteblu3.png"
+}
+
+brightmap texture liteblu4
+{
+	map "brightmaps/stuff/liteblu4.png"
+}
+
+brightmap texture nuke24
+{
+	map "brightmaps/stuff/nuke24.png"
+}
+
+brightmap texture nukedege1
+{
+	map "brightmaps/stuff/nukedge1.png"
+}
+
+brightmap texture nukeslad
+{
+	map "brightmaps/stuff/nukeslad.png"
+}
+
+brightmap texture planet1
+{
+	map "brightmaps/stuff/planet1.png"
+}
+
+brightmap texture redwall1
+{
+	map "brightmaps/stuff/redwall1.png"
+}
+
+brightmap texture sladrip1
+{
+	map "brightmaps/stuff/sladrip1.png"
+}
+
+brightmap texture sladrip2
+{
+	map "brightmaps/stuff/sladrip2.png"
+}
+
+brightmap texture sladrip3
+{
+	map "brightmaps/stuff/sladrip3.png"
+}
+
+brightmap texture sw1brcom
+{
+	map "brightmaps/stuff/sw1brcom.png"
+}
+
+brightmap texture sw1comm
+{
+	map "brightmaps/stuff/sw1comm.png"
+}
+
+brightmap texture sw1dirt
+{
+	map "brightmaps/stuff/sw1dirt.png"
+}
+
+brightmap texture sw1ston1
+{
+	map "brightmaps/stuff/sw1ston1.png"
+}
+
+brightmap texture sw1stone
+{
+	map "brightmaps/stuff/sw1stone.png"
+}
+
+brightmap texture sw1strtn
+{
+	map "brightmaps/stuff/sw1strtn.png"
+}
+
+brightmap texture sw2brcom
+{
+	map "brightmaps/stuff/sw2brcom.png"
+}
+
+brightmap texture sw2brn2
+{
+	map "brightmaps/stuff/sw2brn2.png"
+}
+
+brightmap texture sw2brngn
+{
+	map "brightmaps/stuff/sw2brngn.png"
+}
+
+brightmap texture sw2comm
+{
+	map "brightmaps/stuff/sw2comm.png"
+}
+
+brightmap texture sw2comp
+{
+	map "brightmaps/stuff/sw2comp.png"
+}
+
+brightmap texture sw2dirt
+{
+	map "brightmaps/stuff/sw2dirt.png"
+}
+
+brightmap texture sw2exit
+{
+	map "brightmaps/stuff/sw2exit.png"
+}
+
+brightmap texture sw2grey
+{
+	map "brightmaps/stuff/sw2grey.png"
+}
+
+brightmap texture sw2grey1
+{
+	map "brightmaps/stuff/sw2grey1.png"
+}
+
+brightmap texture sw2metal
+{
+	map "brightmaps/stuff/sw2metal.png"
+}
+
+brightmap texture sw2slad
+{
+	map "brightmaps/stuff/sw2slad.png"
+}
+
+brightmap texture sw2ston1
+{
+	map "brightmaps/stuff/sw2ston1.png"
+}
+
+brightmap texture sw2ston2
+{
+	map "brightmaps/stuff/sw2slad.png"
+}
+
+brightmap texture sw2stone
+{
+	map "brightmaps/stuff/sw2stone.png"
+}
+
+brightmap texture sw2strtn
+{
+	map "brightmaps/stuff/sw2stone.png"
+}
+
+brightmap texture tekwall1
+{
+	map "brightmaps/stuff/tekwall1.png"
+}
+
+brightmap texture tekwall2
+{
+	map "brightmaps/stuff/tekwall2.png"
+}
+
+brightmap texture tekwall5
+{
+	map "brightmaps/stuff/tekwall5.png"
+}
+
+brightmap texture exitston
+{
+	map "brightmaps/stuff/exitston.png"
+}
+
+brightmap texture fireblu1
+{
+	map "brightmaps/stuff/fireblu1.png"
+}
+
+brightmap texture fireblu2
+{
+	map "brightmaps/stuff/fireblu2.png"
+}
+
+brightmap texture firelav2
+{
+	map "brightmaps/stuff/firelav2.png"
+}
+
+brightmap texture firelav3
+{
+	map "brightmaps/stuff/firelav2.png"
+}
+
+brightmap texture firelava
+{
+	map "brightmaps/stuff/firelava.png"
+}
+
+brightmap texture firemag1
+{
+	map "brightmaps/stuff/firemag1.png"
+}
+
+brightmap texture firemag2
+{
+	map "brightmaps/stuff/firemag2.png"
+}
+
+brightmap texture firemag3
+{
+	map "brightmaps/stuff/firemag3.png"
+}
+
+brightmap texture firewala
+{
+	map "brightmaps/stuff/firewala.png"
+}
+
+brightmap texture firewalb
+{
+	map "brightmaps/stuff/firewalb.png"
+}
+
+brightmap texture firewall
+{
+	map "brightmaps/stuff/firewall.png"
+}
+
+brightmap texture litered
+{
+	map "brightmaps/stuff/litered.png"
+}
+
+brightmap texture nukepois
+{
+	map "brightmaps/stuff/nukedge1.png"
+}
+
+brightmap texture sladskul
+{
+	map "brightmaps/stuff/sladskul.png"
+}
+
+brightmap texture sw2blue
+{
+	map "brightmaps/stuff/sw2blue.png"
+}
+
+brightmap texture sw2garg
+{
+	map "brightmaps/stuff/sw2garg.png"
+}
+
+brightmap texture sw2gston
+{
+	map "brightmaps/stuff/sw2gston.png"
+}
+
+brightmap texture sw2hot
+{
+	map "brightmaps/stuff/sw2hot.png"
+}
+
+brightmap texture sw2lion
+{
+	map "brightmaps/stuff/sw2lion.png"
+}
+
+brightmap texture sw2satyr
+{
+	map "brightmaps/stuff/sw2satyr.png"
+}
+
+brightmap texture sw2vine
+{
+	map "brightmaps/stuff/sw2vine.png"
+}
+
+brightmap texture sw2wood
+{
+	map "brightmaps/stuff/sw2wood.png"
+}
+
+brightmap texture wood4
+{
+	map "brightmaps/stuff/wood4.png"
+}
+
+brightmap texture woodgarg
+{
+	map "brightmaps/stuff/woodgarg.png"
+}
+
+brightmap texture woodskul
+{
+	map "brightmaps/stuff/woodskul.png"
+}
+
+brightmap flat  CEIL3_4
+{
+	map "brightmaps/stuff/ceil3_4.png"
+}	
+
+brightmap flat  CEIL3_6
+{
+	map "brightmaps/stuff/ceil3_6.png"
+}
+
+brightmap flat  CONS1_1
+{
+	map "brightmaps/stuff/cons1_1.png"
+}	
+
+brightmap flat  CONS1_5
+{
+	map "brightmaps/stuff/cons1_5.png"
+}
+
+brightmap flat  CONS1_7
+{
+	map "brightmaps/stuff/cons1_7.png"
+}
+
+brightmap flat  CEIL1_3
+{
+	map "brightmaps/stuff/ceil1_3.png"
+}
+
+brightmap flat  CEIL1_2
+{
+	map "brightmaps/stuff/ceil1_2.png"
+}
+
+brightmap flat  FLAT2
+{
+	map "brightmaps/stuff/flat2.png"
+}
+
+brightmap flat  FLOOR1_7
+{
+	map "brightmaps/stuff/floor1_7.png"
+}
+
+brightmap flat  GRNLITE1
+{
+	map "brightmaps/stuff/grnlite1.png"
+}
+
+brightmap flat  GATE1
+{
+	map "brightmaps/stuff/GATE1.png"
+}
+
+brightmap flat  GATE2
+{
+	map "brightmaps/stuff/GATE2.png"
+}
+
+brightmap flat  GATE3
+{
+	map "brightmaps/stuff/GATE3.png"
+}
+
+brightmap flat  GATE4
+{
+	map "brightmaps/stuff/GATE4.png"
+}
+
+brightmap flat  TLITE6_1
+{
+	map "brightmaps/stuff/tlite6_4.png"
+}
+
+brightmap flat  TLITE6_4
+{
+	map "brightmaps/stuff/tlite6_4.png"
+}
+
+brightmap flat  TLITE6_5
+{
+	map "brightmaps/stuff/tlite6_5.png"
+}
+
+brightmap flat  TLITE6_6
+{
+	map "brightmaps/stuff/tlite6_6.png"
+}
+
+brightmap texture bigbrik3
+{
+  map "brightmaps/stuff/bigbrik3.png"
+}
+
+brightmap texture bricklit
+{
+  map "brightmaps/stuff/bricklit.png"
+}  
+
+brightmap texture bronze4
+{
+  map "brightmaps/stuff/bigbrik3.png"
+}
+
+brightmap texture bstone3
+{
+  map "brightmaps/stuff/bstone3.png"
+}
+
+brightmap texture CRACKLe2
+{
+  map "brightmaps/stuff/CRACKLe2.png"
+}
+
+brightmap texture CRACKLe4
+{
+  map "brightmaps/stuff/CRACKLe2.png"
+}
+
+brightmap texture metal3
+{
+  map "brightmaps/stuff/metal3.png"
+}
+
+brightmap texture metal6
+{
+  map "brightmaps/stuff/metal6.png"
+}
+
+brightmap texture metal7
+{
+  map "brightmaps/stuff/metal7.png"
+}
+
+brightmap texture panbook
+{
+  map "brightmaps/stuff/panbook.png"
+}
+
+brightmap texture pipewal1
+{
+  map "brightmaps/stuff/pipewall1.png"
+}
+
+brightmap texture silver2
+{
+  map "brightmaps/stuff/silver2.png"
+}
+
+brightmap texture silver3
+{
+  map "brightmaps/stuff/silver3.png"
+}
+
+brightmap texture spacew3
+{
+  map "brightmaps/stuff/spacew3.png"
+}
+
+brightmap texture spcdoor1
+{
+  map "brightmaps/stuff/spcdoor1.png"
+}
+
+brightmap texture spcdoor2
+{
+  map "brightmaps/stuff/spcdoor1.png"
+}
+
+brightmap texture spcdoor3
+{
+  map "brightmaps/stuff/spcdoor3.png"
+}
+
+brightmap texture spcdoor4
+{
+  map "brightmaps/stuff/spcdoor4.png"
+}
+
+brightmap texture sw1met2
+{
+  map "brightmaps/stuff/sw1met2.png"
+}
+
+brightmap texture sw1starg
+{
+  map "brightmaps/stuff/sw1brcom.png"
+}
+
+brightmap texture sw1brn1
+{
+  map "brightmaps/stuff/sw1brcom.png"
+}
+
+brightmap texture sw1brik
+{
+  map "brightmaps/stuff/sw1brik.png"
+}
+
+brightmap texture sw1wdmet
+{
+  map "brightmaps/stuff/sw1wdmet.png"
+}
+
+brightmap texture sw2brik
+{
+  map "brightmaps/stuff/sw1wdmet.png"
+}
+
+brightmap texture sw2brn1
+{
+  map "brightmaps/stuff/sw2brcom.png"
+}
+
+brightmap texture sw2marb
+{
+  map "brightmaps/stuff/sw2marb.png"
+}
+
+brightmap texture sw2met2
+{
+  map "brightmaps/stuff/sw2met2.png"
+}
+
+brightmap texture sw2mod1
+{
+  map "brightmaps/stuff/sw2mod1.png"
+}
+
+brightmap texture sw2panel
+{
+  map "brightmaps/stuff/sw2panel.png"
+}
+
+brightmap texture sw2rock
+{
+  map "brightmaps/stuff/sw2rock.png"
+}
+
+brightmap texture sw2skull
+{
+  map "brightmaps/stuff/sw2skull.png"
+}
+
+brightmap texture sw2starg
+{
+  map "brightmaps/stuff/sw2brcom.png"
+}
+
+brightmap texture sw2brn1
+{
+  map "brightmaps/stuff/sw2brcom.png"
+}
+
+brightmap texture sw2ston6
+{
+  map "brightmaps/stuff/sw2ston6.png"
+}
+
+brightmap texture sw2tek
+{
+  map "brightmaps/stuff/sw2tek.png"
+}
+
+brightmap texture sw2wdmet
+{
+  map "brightmaps/stuff/sw1wdmet.png"
+}
+
+brightmap texture sw2zim
+{
+  map "brightmaps/stuff/sw2zim.png"
+}
+
+brightmap texture tekbron2
+{
+  map "brightmaps/stuff/tekbron2.png"
+}
+
+brightmap texture tekgren1
+{
+  map "brightmaps/stuff/tekgren1.png"
+}
+
+brightmap texture tekgren3
+{
+  map "brightmaps/stuff/tekgren3.png"
+}
+
+brightmap texture tekgren5
+{
+  map "brightmaps/stuff/tekgren5.png"
+}
+
+brightmap texture teklite
+{
+  map "brightmaps/stuff/teklite.png"
+}
+
+brightmap texture teklite2
+{
+  map "brightmaps/stuff/teklite2.png"
+}
+
+brightmap texture tekwall6
+{
+  map "brightmaps/stuff/tekwall6.png"
+}

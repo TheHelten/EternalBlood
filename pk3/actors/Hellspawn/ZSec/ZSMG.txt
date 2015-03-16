@@ -1,0 +1,100 @@
+//SMG.
+Actor "Sub Machine-Gun" : Weapon
+{
+   Weapon.AmmoType "ZSec-SMGClip"
+   Weapon.AmmoType2 "ZSec-SMGAmmo"
+   Weapon.SlotNumber 3
+   Weapon.KickBack 40
+   Obituary "%o was shredded by %k's Machine Gun."
+   +AMMO_OPTIONAL
+   +ALT_AMMO_OPTIONAL
+   +INVENTORY.UNDROPPABLE
+   States 
+   {
+   Ready:
+      D3MG A 1 A_WeaponReady
+      Loop
+   Deselect:
+      D3MG A 1 A_Lower
+	  D3MG A 0 A_Lower
+      Loop
+   Select:
+      D3MG A 1 A_Raise
+	  D3MG A 0 A_Raise
+      Loop
+   Fire:
+      D3MG A 1 A_JumpIfInventory("ZSec-SMGClip",1,"FireGo")
+	  Goto ForceReloadCheck
+   FireGo:
+      D3MG A 0 A_TakeInventory("ZSec-SMGClip",1)
+	  D3MG A 0 A_PlayWeaponSound("ZSMG/Fire")
+	  D3MG A 0 A_GunFlash
+      D3MG A 0 A_FireBullets(3.8,2.3,-1,Random(3,4),"BulletPuff")
+      D3MG ABA 1
+	  D3MG B 0 A_ReFire
+      D3MG CCBBAAAA 1
+      Goto Ready
+   Flash:
+      D3MF A 0 A_Jump (256, 1, 2, 3)
+	  D3MF A 2 bright
+	  Stop
+	  D3MF B 2 bright
+	  Stop
+	  D3MF C 2 bright
+	  Stop
+   ForceReloadCheck:
+	  D3ML A 5 A_PlaySound ("ZSMG/Beep")
+	  D3ML BCDE 1
+	  D3ML A 0 A_JumpIfInventory ("ZSec-SMGAmmo", 40, "ForceReload")
+	  Goto Ready
+   ForceReload:
+	  D3MR A 1 A_PlaySound("ZSMG/Out")
+	  D3MR BCD 1
+	  D3MR E 18
+	  D3MR F 0 A_TakeInventory ("ZSec-SMGAmmo", 40)
+	  D3MR F 0 A_GiveInventory ("ZSec-SMGClip", 40)
+	  D3MR F 1 A_PlaySound("ZSMG/In")
+	  D3MR E 10
+	  D3MR G 1 A_PlaySound ("ZSMG/Back")
+	  D3MR E 6
+	  D3MR F 1 A_PlaySound ("ZSMG/Forward")
+	  D3MR EDCBA 1
+	  Goto Ready
+   AltFire:
+      D3MG A 1
+      D3MG A 0 A_JumpIfInventory ("ZSec-SMGClip", 0, "Ready")
+	  D3ML A 0 A_JumpIfInventory ("ZSec-SMGAmmo", 40, "Reload")
+	  Goto Ready
+   Reload:
+	  D3MR F 0 A_TakeInventory ("ZSec-SMGClip", 40)
+	  D3MR A 1 A_PlaySound("ZSMG/Out")
+	  D3MR BCD 1
+	  D3MR E 18
+	  D3MR F 0 A_TakeInventory ("ZSec-SMGAmmo", 40)
+	  D3MR F 0 A_GiveInventory ("ZSec-SMGClip", 40)
+	  D3MR F 1 A_PlaySound("ZSMG/In")
+	  D3MR E 10
+	  D3MR DCBA 1
+	  Goto Ready
+   }
+}
+
+Actor ZSec-SMGClip : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 40
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 40
+	Inventory.Icon "CLIPA0"
+	+INVENTORY.IGNORESKILL
+}
+
+Actor ZSec-SMGAmmo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 240
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 240
+	Inventory.Icon "AMMOA0"
+	+INVENTORY.IGNORESKILL
+}

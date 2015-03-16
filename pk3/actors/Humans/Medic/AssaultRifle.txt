@@ -1,0 +1,101 @@
+//Assault Rifle.
+Actor "Assault Rifle" : Weapon
+{
+   Inventory.PickupMessage "You got an Assault Rifle!"
+   Weapon.AmmoType1 "AssaultClips"
+   Weapon.AmmoGive1 30
+   Weapon.AmmoUse1 0
+   Weapon.AmmoType2 "AssaultClip"
+   Weapon.AmmoGive2 180
+   Weapon.AmmoUse2 0
+   Weapon.SlotNumber 3
+   Weapon.KickBack 0
+   Obituary "%o was filled with holes from %k's Assault Rifle."
+   +AMMO_OPTIONAL
+   +ALT_AMMO_OPTIONAL
+   +INVENTORY.UNDROPPABLE
+   States 
+   {
+   Spawn:
+      TNT1 A 0
+      Stop
+   Ready:
+      HVRG A 1 A_WeaponReady
+      Loop
+   Deselect:
+      HVRG A 1 A_Lower
+	  HVRG A 0 A_Lower
+      Loop
+   Select:
+      HVRG A 1 A_Raise
+	  HVRG A 0 A_Raise
+      Loop
+   Fire:
+      HVRG A 1 A_JumpIfInventory("AssaultClips",1,"FireGo")
+	  Goto ReloadCheck
+   FireGo:
+      HVRF A 0 bright A_TakeInventory("AssaultClips",1)
+	  HVRF A 0 bright A_PlayWeaponSound("AssaultRifle/Fire")
+	  HVRF A 0 bright A_GunFlash
+      HVRF A 1 bright A_FireBullets(3.2,1.6,-1,4,"BulletPuff")
+      HVRF B 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+      HVRG A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRG A 0 A_ReFire
+      Goto Ready
+   AltFire:
+      HVRG A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRG A 0 A_JumpIfInventory("AssaultClips",30,"Ready")
+	  Goto ReloadCheck
+   ReloadCheck:
+	  HVRG A 0 A_JumpIfInventory("AssaultClip",30,"Reload")
+	  HVRG A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRG A 0 A_JumpIfInventory("AssaultClips",30,"Ready")
+	  Goto Ready
+   Reload:
+      HVRR G 0 A_TakeInventory("AssaultClips",30)
+	  HVRR AABBCCDDEEFF 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRR G 0 A_PlaySoundEx("AssaultRifle/Reload","SoundSlot10")
+	  HVRR GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRR HHIIHH 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRR GGGGGGGGGGGGGGG 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRR G 0 A_TakeInventory("AssaultClip",30)
+	  HVRR G 0 A_GiveInventory("AssaultClips",30)
+   GoBack:
+	  HVRR FFEEDDCCBBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  HVRG AA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	  Goto Ready
+   }
+}
+
+Actor AssaultClip : Ammo
+{
+	Inventory.PickupMessage "Picked up some Assault Rifle Clips."
+	Inventory.Amount 60
+	Inventory.MaxAmount 180
+	Ammo.BackpackAmount 30
+	Ammo.BackpackMaxAmount 180
+	Inventory.Icon "AMMOA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		CLIP A 0
+		Stop
+	}
+}
+
+Actor AssaultClips : Ammo
+{
+	Inventory.PickupMessage "Reloaded the Assault Rifle."
+	Inventory.Amount 30
+	Inventory.MaxAmount 30
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 30
+	Inventory.Icon "CLIPA0"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		Stop
+	}
+}

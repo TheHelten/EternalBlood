@@ -1,0 +1,76 @@
+//===========================================================================
+//
+// Commando Player
+//
+//===========================================================================
+Actor CommandoClass : PlayerPawn
+{
+	Speed 1
+	Health 125
+	Radius 16
+	Height 56
+	Mass 100
+	PainChance 255
+	Player.ColorRange 112, 127
+	Player.MaxHealth 125
+	Player.DisplayName "Commando"
+	Player.SoundClass "Marine"
+	Player.CrouchSprite ""
+	Player.StartItem "GreenArmor"
+	Player.StartItem "Triple Barreled Shotgun", 1
+	Player.StartItem "TripleBarrelShotgunShell", 60
+	Player.StartItem "Pulse-Plasma Gun", 1
+	Player.StartItem "PulseCell", 200
+	Player.ForwardMove 0.70
+	Player.SideMove 0.64
+	Player.JumpZ 8
+	DamageFactor "Air", 0.25
+	DamageFactor "CyRocket", 0.75
+	DamageFactor "CyPlasma", 0.65
+	Limitedtoteam 0
+	+GHOST
+	States
+	{
+	Spawn:
+		PSDO A -1
+		Stop
+	See:
+		PSDO AAAAAA 1
+		PSDO BBBBB 1
+		PSDO B 0 A_SpawnItemEx("PlayerFootStep", 0, 0, 0, 0, 0, -20, 0,0, 0) 
+		PSDO CCCCCC 1
+		PSDO DDDDD 1
+		PSDO D 0 A_SpawnItemEx("PlayerFootStep", 0, 0, 0, 0, 0, -20, 0,0, 0)
+		Loop
+	Missile:
+		PSDO E 6
+		Goto Spawn
+	Melee:
+		PSDO F 3 BRIGHT
+		Goto Missile
+	Pain.FlareBurns:
+		PSDO G 2 ACS_ExecuteAlways (998, 0, 0, 0, 0)
+		PSDO G 2 A_Pain
+		Goto Spawn
+	Pain:
+		PSDO G 2
+		PSDO G 2 A_Pain
+		Goto Spawn
+	Pain.DeathDrain:
+		PSDO G 0 A_GiveToTarget("Health",Random(5,10))
+		PSDO G 2
+		PSDO G 2 A_Pain
+		Goto Spawn
+	Death.DeathDrain:
+		PSDO H 0 A_GiveToTarget("Health",Random(50,150))
+	Death:
+		PSDO H 10
+		PSDO I 0 A_PlayerScream
+		PSDO I 10
+		PSDO J 0 A_NoBlocking
+		PSDO JKLM 10
+		PSDO N 0
+		PSDO N -1
+		Goto Death+6
+	}
+}

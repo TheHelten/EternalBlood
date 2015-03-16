@@ -1,0 +1,159 @@
+Actor "Flare Gun" : Weapon
+{
+   Weapon.SelectionOrder 500
+   Weapon.SlotNumber 1
+   Inventory.PickupMessage "You got the Flare Gun!"
+   Weapon.Kickback 100
+   Obituary "%o got Puffed by %k's Flare Gun"
+   +AMMO_OPTIONAL
+   +INVENTORY.UNDROPPABLE
+   States
+   {
+   Spawn:
+      TNT1 A -1
+      Loop
+   Ready:
+      FLRG A 1 A_WeaponReady
+      Goto Ready
+   Deselect:
+	  FLRG A 0 A_Lower
+	  FLRG A 1 A_Lower
+      Loop
+   Select:
+	  FLRG A 0 A_Raise
+	  FLRG A 1 A_Raise
+      Loop
+   Fire:
+      FLRG A 0 A_GunFlash
+      FLRF A 1 BRIGHT
+	  FLRF B 0 BRIGHT
+	  FLRF B 0 BRIGHT A_FireCustomMissile("Flare", 0, 1, 0, 5, 0, 1) 
+      FLRF B 1 BRIGHT
+      FLRF C 1 BRIGHT
+	  FLRG A 10
+      FLRG BCDEFGHIJK 1
+      FLRR A 1 A_PlaySound("FlareGun/Open")
+      FLRR B 1
+      FLRR C 12
+      FLRR DEFGHIJ 1
+	  FLRG A 0
+      FLRR K 7 A_PlaySound("FlareGun/Load")
+      FLRR LMNOPQRSTU 1
+      FLRG K 1 A_PlaySound("FlareGun/Close")
+      FLRG JIHGFEDCBAAAAA 1
+      Goto Ready
+   Flash:    
+      TNT1 A 2 BRIGHT A_Light2
+      TNT1 A 2 BRIGHT A_Light1
+      TNT1 A 1 BRIGHT A_Light0
+      Stop
+   }
+}
+
+Actor Flare
+{
+    Radius 8
+    Height 6
+	Health 1
+    Speed 30
+    ExplosionRadius 65
+    ExplosionDamage 15
+    Damage (5)
+	DamageType "FlareBurns"
+	Gravity 0.25
+    PROJECTILE
+	+SHOOTABLE
+	+NOBLOOD
+	+NOTARGETSWITCH
+	+MISSILE
+	+FORCEXYBILLBOARD
+	+NOTIMEFREEZE
+	-NOBLOCKMAP
+	-NOGRAVITY
+    SeeSound "FlareGun/Fire"
+    DeathSound "FlareGun/Puff"
+    States
+    {
+    Spawn:
+		FLAR A 0 bright
+        FLAR A 1 bright A_SpawnItemEx("FlareTrail",0,0,0,0,0,0)
+        FLAR A 0 bright
+		Loop
+    Death:
+	    FREX A 0 bright A_NoGravity
+		FREX AAAAAAAAAAAA 0 bright A_SpawnItemEx("FlarePop",0,0,0,Random(-10,10),Random(-10,10),Random(-10,10),0,0,0)
+        FREX A 0 bright A_Explode
+        FREX ABC 4 bright
+        Stop
+    }
+}
+
+Actor FlareTrail
+{
+    Radius 8
+    Height 6
+    Speed 1
+    Damage 0
+    PROJECTILE
+	+FORCEXYBILLBOARD
+	+NOTIMEFREEZE
+    RenderStyle Add
+    Alpha 0.47
+    States
+    {
+    Spawn:
+    Death:
+        FLAR BBCCDDEEFFGG 1 bright
+        Stop
+    }
+}
+
+Actor FlarePop
+{
+    Radius 4
+    Height 6
+	Scale 0.2
+    Speed 1
+    Damage 0
+    PROJECTILE
+    RenderStyle Add
+	Alpha 0.47
+	BounceFactor 0.2
+	-NOGRAVITY
+	-RIPPER
+	+DOOMBOUNCE
+	+FLOORCLIP
+	+DONTSPLASH
+	+NOTELEPORT
+	+FORCEXYBILLBOARD
+	+NOTIMEFREEZE
+    States
+    {
+    Spawn:
+        FLAR BCBCBCBCBCBC 1 bright
+		FLAR BCBCBCBCBCBC 1 bright
+		FLAR BCBCBCBCBCBC 1 bright
+		FLAR BCBCBCBCBCBC 1 bright
+		Stop
+	Death:
+	    FLAR BCBCBCBCBCBC 1 bright
+		FLAR BCBCBCBCBCBC 1 bright
+		FLAR BCBCBCBCBCBC 1 bright
+		FLAR BCBCBCBCBCBC 1 bright
+		Stop
+    }
+}
+
+//For testing Flares.
+Actor Flaregunner : Zombieman
+{
+  MissileType "Flare"
+  States
+  {
+  Missile:
+    POSS E 10 A_FaceTarget
+	POSS F 10 bright A_MissileAttack
+	POSS E 10 A_FaceTarget
+    Goto See
+  }
+}

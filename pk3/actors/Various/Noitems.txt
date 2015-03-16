@@ -1,0 +1,281 @@
+//Special thanks to Cutman, since I am lazy.
+Actor Nothing1 replaces Cell
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing2 replaces CellPack
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing3 replaces Clip
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing4 replaces ClipBox
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing5 replaces Shell
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing6 replaces ShellBox
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing7 replaces RocketAmmo
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing8 replaces RocketBox
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing9 : BackPack replaces BackPack
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing10 replaces Shotgun
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing11 replaces SuperShotgun
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing12 replaces Chaingun
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing13 replaces RocketLauncher
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing14 replaces PlasmaRifle
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing15 replaces BFG9000
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing16 replaces Chainsaw
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing17 replaces Stimpack
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing18 replaces Medikit
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing19 replaces GreenArmor
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing20 replaces BlueArmor
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing21 replaces ArmorBonus
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing22 replaces HealthBonus
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing23 replaces Megasphere
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing24 replaces Soulsphere
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing25 replaces Berserk
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing26 replaces RadSuit
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+Actor Nothing27 replaces Allmap
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}
+
+
+Actor Nothing28 replaces Infrared 
+{
+States
+{
+Spawn:
+TNT1 A 1
+Stop
+}
+}

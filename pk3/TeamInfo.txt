@@ -1,0 +1,53 @@
+ClearTeams
+
+Team "United Earth Defense"
+{
+   PlayerColor "DD DD DD"
+   TextColor "Blue"
+   RailColor "00 00 FF"
+   FlagItem "BlueFlag"
+   SkullItem "BlueSkullST"
+   PlayerStartThingNumber 0
+   SmallFlagHUDIcon "STFLA1"
+   SmallSkullHUDIcon "STKEYS3"
+   LargeFlagHUDIcon "BFLASMAL"
+   LargeSkullHUDIcon "BSKUA0"
+   //WinnerTheme "D_UEDWIN"
+   //LoserTheme "D_UEDLOS"
+   //WinnerPic "UEDWIN"
+   //LoserPic "UEDLOSE"
+   AllowCustomPlayerColor
+}
+
+Team "Hellspawn"
+{
+	PlayerColor "BF 00 00"
+	TextColor "Red"
+	RailColor "FF 00 00"
+	FlagItem "RedFlag"
+	SkullItem "RedSkullST"
+	PlayerStartThingNumber 0
+	SmallFlagHUDIcon "STFLA2"
+	SmallSkullHUDIcon "STKEYS5"
+	LargeFlagHUDIcon "RFLASMAL"
+	LargeSkullHUDIcon "RSKUA0"
+    //WinnerTheme "D_HELWIN"
+    //LoserTheme "D_HELLOS"
+	//WinnerPic "HELLWIN"
+    //LoserPic "HELLLOS"
+	AllowCustomPlayerColor
+}
+/*
+Team "Aeratins"
+{
+	PlayerColor "00 00 BF"
+	TextColor "Green"
+	RailColor "00 FF 00"
+	FlagItem "WhiteFlag"
+	PlayerStartThingNumber 0
+    //WinnerTheme "D_AERAWN"
+    //LoserTheme "D_AERALS"
+    //WinnerPic "AERAWIN"
+    //LoserPic "AERALOSE"
+	AllowCustomPlayerColor
+}

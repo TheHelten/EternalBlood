@@ -1,0 +1,231 @@
+//Pipebombs.
+Actor "Rocketeer-Pipes" : Weapon
+{
+	Weapon.AmmoType "PipeBombAmmo"
+	Weapon.AmmoUse 1
+	Weapon.AmmoType2 "PipeBombAmmo"
+	Weapon.AmmoUse2 1
+	Weapon.SlotNumber 2
+	Obituary "%o was shredded by %k's Pipe-Bomb."
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.NOAUTOAIM
+	+INVENTORY.UNDROPPABLE
+	States
+	{ 
+	FalseReady:
+		PIPE A 0 A_JumpIfInventory("PipeBombAmmo", 1, "Ready")
+		TNT1 A 1 A_WeaponReady
+		Loop
+	Ready:
+		PIPE A 0 A_JumpIfInventory("PipeBombAmmo", 1, 1)
+		Goto FalseReady
+        PIPE A 1 A_WeaponReady
+        Loop
+	Deselect:
+		PIPE A 0 A_JumpIfInventory("PipeBombAmmo", 1, "AmmodDeselect")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		TNT1 A 1 A_Lower
+		Loop
+	AmmodDeselect:
+        PIPE A 1 A_Lower
+		PIPE A 0 A_Lower
+        Loop
+	Select:
+		PIPE A 0 A_JumpIfInventory("PipeBombAmmo", 1, "AmmodSelect")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		TNT1 A 1 A_Raise
+		Loop
+	AmmodSelect:
+        PIPE A 1 A_Raise
+		PIPE A 0 A_Raise
+        Loop
+	Fire:
+		PIPE CEG 1
+	Hold:
+		PIPE I 0 A_JumpIfInventory("PipeBombTimer", 100, "Toss100")
+		PIPE I 0 A_GiveInventory("PipeBombTimer", 2)
+		PIPE II 1
+		PIPE I 0 A_ReFire
+	Toss:
+		PIPE KMO 1
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 90, "Toss90")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 80, "Toss80")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 70, "Toss70")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 60, "Toss60")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 50, "Toss50")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 40, "Toss40")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 30, "Toss30")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 20, "Toss20")
+		PIPE O 0 A_JumpIfInventory("PipeBombTimer", 10, "Toss10")
+		PIPE O 0 A_FireCustomMissile("PipeBomb", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss10:
+		PIPE O 0 A_FireCustomMissile("PipeBomb10", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss20:
+		PIPE O 0 A_FireCustomMissile("PipeBomb20", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss30:
+		PIPE O 0 A_FireCustomMissile("PipeBomb30", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss40:
+		PIPE O 0 A_FireCustomMissile("PipeBomb40", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss50:
+		PIPE O 0 A_FireCustomMissile("PipeBomb50", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss60:
+		PIPE O 0 A_FireCustomMissile("PipeBomb60", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss70:
+		PIPE O 0 A_FireCustomMissile("PipeBomb70", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss80:
+		PIPE O 0 A_FireCustomMissile("PipeBomb80", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss90:
+		PIPE O 0 A_FireCustomMissile("PipeBomb90", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Toss100:
+		PIPE O 0 A_FireCustomMissile("PipeBomb100", 0, 1, 6, 0, 0, 7)
+		Goto Untoss
+	Untoss:
+		PIPE Q 4 A_TakeInventory("PipeBombTimer", 100)
+		PIPE RSTU 1
+		TNT1 A 4 A_CheckReload
+		Goto Backup
+	Backup:
+		PIPE G 0 A_TakeInventory("PipeBombTimer", 100)
+		PIPE GEC 1
+		PIPE A 4
+		Goto Ready
+	AltFire:
+		TNT1 A 0 A_JumpIfInventory("PipeBombAmmo",1,"AltFireGo")
+		TNT1 A 1 A_SelectWeapon("Rocketeer-Pistol")
+		Goto Ready
+	AltFireGo:
+		PIPE CEG 1
+	AltHold:
+		TNT1 I 0 A_JumpIfInventory("PipeBombTimer", 100, "Drop100")
+		TNT1 I 0 A_GiveInventory("PipeBombTimer", 2)
+		TNT1 II 1
+		TNT1 I 0 A_ReFire
+	Drop:
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 90, "Drop90")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 80, "Drop80")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 70, "Drop70")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 60, "Drop60")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 50, "Drop50")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 40, "Drop40")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 30, "Drop30")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 20, "Drop20")
+		TNT1 A 0 A_JumpIfInventory("PipeBombTimer", 10, "Drop10")
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop")
+		Goto Backup
+	Drop10:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop10")
+		Goto Backup
+	Drop20:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop20")
+		Goto Backup
+	Drop30:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop30")
+		Goto Backup
+	Drop40:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop40")
+		Goto Backup
+	Drop50:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop50")
+		Goto Backup
+	Drop60:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop60")
+		Goto Backup
+	Drop70:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop70")
+		Goto Backup
+	Drop80:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop80")
+		Goto Backup
+	Drop90:
+		TNT1 A 0 A_FireCustomMissile("PipeBombDrop90")
+		Goto Backup
+	Drop100:
+		TNT1 A 0 A_FireCustomMissile("PipeBomb100")
+		Goto Backup
+	}
+}
+
+Actor PipeBomb
+{
+  Speed 20
+  Radius 4
+  Height 4
+  Scale 0.1
+  Damage (0)
+  BounceFactor 0.2
+  WallBounceFactor 0.2
+  ReactionTime 100
+  Obituary "%o was shredded by %k's Pipe-Bomb."
+  PROJECTILE
+  -NOGRAVITY
+  +HEXENBOUNCE
+  +BOUNCEONACTORS
+  +NOTIMEFREEZE
+  states
+  {
+  Spawn:
+   PIPB A 0
+   PIPB A 0 A_PlaySound("pipebomb/toss")
+  SpawnLoop:
+   PIPB AAAAAAAAAA 1 A_Countdown
+   Loop
+  Death:
+   TNT1 A 0 bright A_PlaySound("ShockRocket/Explosion")
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("ShockShrapnel",0,/*Random(-64,64)*/0,Random(0,360),2,Random(0,360))
+   TNT1 A 0 bright A_Explode(40, 90)
+   TNT1 A 0 bright A_SpawnItemEx("ShockSmoke",0,0,4)
+   TNT1 A 0 bright A_SpawnItemEx("ShockDeath",0,0,4)
+   TNT1 AA 0 bright A_SpawnItemEx("ShockSplode",0,0,4)
+   stop
+  }
+}
+
+Actor PipeBomb10 : PipeBomb {ReactionTime 90}
+Actor PipeBomb20 : PipeBomb {ReactionTime 80}
+Actor PipeBomb30 : PipeBomb {ReactionTime 70}
+Actor PipeBomb40 : PipeBomb {ReactionTime 60}
+Actor PipeBomb50 : PipeBomb {ReactionTime 50}
+Actor PipeBomb60 : PipeBomb {ReactionTime 40}
+Actor PipeBomb70 : PipeBomb {ReactionTime 30}
+Actor PipeBomb80 : PipeBomb {ReactionTime 20}
+Actor PipeBomb90 : PipeBomb {ReactionTime 10}
+Actor PipeBomb100 : PipeBomb {ReactionTime 0}
+
+Actor PipeBombDrop : PipeBomb {Speed 2}
+Actor PipeBombDrop10 : PipeBombDrop {ReactionTime 90}
+Actor PipeBombDrop20 : PipeBombDrop {ReactionTime 80}
+Actor PipeBombDrop30 : PipeBombDrop {ReactionTime 70}
+Actor PipeBombDrop40 : PipeBombDrop {ReactionTime 60}
+Actor PipeBombDrop50 : PipeBombDrop {ReactionTime 50}
+Actor PipeBombDrop60 : PipeBombDrop {ReactionTime 40}
+Actor PipeBombDrop70 : PipeBombDrop {ReactionTime 30}
+Actor PipeBombDrop80 : PipeBombDrop {ReactionTime 20}
+Actor PipeBombDrop90 : PipeBombDrop {ReactionTime 10}
+
+Actor PipeBombAmmo : Ammo
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 8
+  Ammo.BackpackAmount 0
+  Ammo.BackpackMaxAmount 8
+  +INVENTORY.IGNORESKILL
+}
+
+Actor PipeBombTimer : Ammo
+{
+  Inventory.MaxAmount 100
+  Ammo.BackpackMaxAmount 100
+  +INVENTORY.IGNORESKILL
+}
+
+Actor TicCount : Inventory {Inventory.MaxAmount 10}

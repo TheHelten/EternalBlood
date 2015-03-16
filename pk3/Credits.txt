@@ -1,0 +1,64 @@
+/*
+
+So yes, not everything in this wad is original, and hey, maybe NOTHING in this wad is original,
+but either way; we decided to add credits and not be assholes. That's all we can do :x But ey,
+we could also t4t w/ the people we borrowed the resources from. Oh well! (Note: Helten wrote this,
+so anything he wrote does not describe what the rest of the EternalBlood development team feels.)
+
+(The only reason I did not include or cite resources such as Doom 3 or whatever, is because
+it is so obvious where those sounds are from. If you really must know where they are from,
+it is easy enough to ask a neighboring player or someone from this project if you ever meet
+them.)
+--------------------------------------------------------------------------------------------------
+
+Credits List!
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+---===Sprites===---
+
+Marty Kira (Misc.)
+---
+ScubaSteve[YOU KNOW HE WAS GONNA BE IN HERE] (Knife, Misc.)
+---
+Eriance[THIS GUY TOO] (Goliath Cannon-Base)
+---
+Vader (Goliath)
+---
+Captain Toenail (ZSec Player)
+---
+Xim (ZSec Shotgun, Misc.)
+---
+Xaser (Pipe Bomb, Misc.)
+---
+"Daniel" (Plasma-Pistol)
+---
+XutaWoo (Assistance in Smooth-Animation, Misc.)
+---
+Helten (Various, Glove Swaps, Smooth-Animation, Goliath arm-modification, guy who made people go get sprites.)
+
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+---===Sounds===---
+
+StrikerMan780 (Great Sound-Composer, Revamped Sound Effects, Misc.)
+---
+dudukrazy (ZSec Shotgun)
+---
+Eriance (Cybruiser, Misc)
+---
+Helten (Various, Editing sound effects, Volume/Pitch, adding voices, pieces, guy who made people go get sounds.)
+
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+---===(External) Decorate===---
+
+MG_Man, Hidon, Theshooter7, Jimmy91, Arachnotron II, Blzut3 (Misc.)
+---
+Helten (Various, Older outside works brought into the project, guy who made people code for him.)
+
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
+*/

@@ -1,0 +1,49 @@
+//Yes this is a completely original bulletpuff system.
+Actor NewBulletPuff : BulletPuff replaces BulletPuff
+{
+VSpeed 0
++NOTIMEFREEZE
+-ALLOWPARTICLES
+States
+{
+  Spawn:
+  	BPFF A 0 bright
+	BPFF A 0 bright ThrustThing(Random(0,255), Random(0,4), 1, 0)
+	BPFF A 0 bright ThrustThingZ(0, Random(1,3), Random(0,1), Random(0,1))
+	BPFF A 0 bright A_SpawnDebris("SparkPuff", 1)
+	BPFF A 0 bright A_Jump(70,2)
+	BPFF A 0 bright A_PlaySound("Puff/Richochet")
+    BPFF A 4 bright
+    BPFF B 4 A_FadeOut(0.2)
+  Melee:
+    BPFF CD 4 A_FadeOut(0.1)
+    Stop
+}
+}
+
+Actor SparkPuff : BulletPuff
+{
++DOOMBOUNCE
++FLOORCLIP
++DONTSPLASH
++NOTELEPORT
+-NOGRAVITY
+-LOWGRAVITY
+-ALLOWPARTICLES
++NOTIMEFREEZE
+Health 4
+Radius 4
+Height 8
+Speed  1
+Mass   0
+Scale 0.1258
+States
+{
+  Spawn:
+  Death:
+    BPFF ABABAB 1 bright
+	BPFF A 0 bright
+	BPFF ABABABABAB 1 bright A_FadeOut(0.01)
+    Stop
+}
+}

@@ -1,0 +1,83 @@
+//Ghost-Rifle.
+Actor "Ghost-Rifle" : Weapon
+{
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 6
+	Weapon.AmmoType1 "GhostShells"
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive2 100
+	Weapon.AmmoType2 "CloakEnergy"
+	Weapon.SlotNumber 3
+	Weapon.KickBack 0
+	Inventory.PickupMessage "Picked up a Ghost Rifle!"
+	+WEAPON.NOAUTOAIM
+	+AMMO_OPTIONAL
+	+ALT_AMMO_OPTIONAL
+	//+WEAPON.NOAUTOFIRE
+	+INVENTORY.UNDROPPABLE
+	Obituary "%o was sniped by %k."
+	States
+	{
+	Cloaked:
+		SHGT A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE) //This is a idle state, for which the player may not fire.
+	Ready:
+		SHGT A 1 A_WeaponReady
+		Loop
+	Deselect:
+		SHGT A 1 A_Lower
+		SHGT A 0 A_Lower
+		Loop
+	Select:
+		SHGT A 1 A_Raise
+		SHGT A 0 A_Raise
+		Loop
+	Fire:
+		SHGT A 0 A_JumpIfInventory("Cloaked",1,"Cloaked")
+		SHGT A 0 A_JumpIfInventory("GhostShells",1,"FireGo")
+		SHGT A 0 A_PlaySoundEx("GhostRifle/Out",CHAN_AUTO)
+		SHGT AAAAAAAAAAAAAAAAAAAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto Ready
+	FireGo:
+		SHGT A 0
+		SHGT A 0 A_GunFlash
+		SHGT A 0 A_PlaySoundEx("GhostRifle/Fire","SoundSlot10")
+		SHGT A 0 A_FireBullets(0,0,1,0,"BulletPuff")
+		SHGT A 0 A_RailAttack(Random(20,40), 0, 0, none, none, 1)
+		SHGT AAAAAAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		SHGT A 0 A_JumpIfInventory("GhostShells",1,"Load")
+		SHGT A 0
+		Goto Ready
+	Load:
+		SHGT BBCCDDEFGHIJKLM 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		SHGT M 0 A_PlaySoundEx("ZSecShotgun/Load","SoundSlot8")
+		SHLI ABCDEFFFF 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		SHGT M 0 A_PlaySoundEx("GhostRifle/Load","SoundSlot10")
+		SHLI EDCBA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		SHGT MLKJIHGFEDDCCBBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		SHGT A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		SHGT A 0 //State Checker
+		Goto Ready
+	Flash:
+		SHTF A 3 Bright A_Light1
+		SHTF B 2 Bright A_Light2
+		SHTF B 0 Bright A_Light0
+		Stop
+	}
+}	
+
+Actor GhostShells : Ammo
+{
+	Inventory.PickupMessage "Picked up a Box of Ghost-Rifle Shells."
+	Inventory.Amount 6
+	Inventory.MaxAmount 30
+	Ammo.BackpackAmount 6
+	Ammo.BackpackMaxAmount 30
+	Inventory.Icon "SBOXA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		SBOX A 0
+		Stop
+	}
+}

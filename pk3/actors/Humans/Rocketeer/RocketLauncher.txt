@@ -1,0 +1,421 @@
+//AA-AT Launcher.
+Actor "AA-AT Launcher" : Weapon
+{
+   Inventory.PickupMessage "You got the AA-AT Launcher!"
+   Obituary "%o was leveled by %k's Rocket."
+   Weapon.AmmoType1 "RocketAmmunition"
+   Weapon.AmmoGive1 30
+   Weapon.AmmoUse1 1
+   Weapon.AmmoType2 "FlakAmmo"
+   Weapon.AmmoGive2 20
+   Weapon.AmmoUse2 1
+   Weapon.SlotNumber 3
+   Weapon.KickBack 0
+   +AMMO_OPTIONAL
+   +ALT_AMMO_OPTIONAL
+   +WEAPON.NOAUTOAIM
+   +INVENTORY.UNDROPPABLE
+   States
+   {
+   Spawn:
+	TNT1 A 0
+	Stop
+   Ready:
+	MISG A 1 A_WeaponReady
+	Loop
+   Deselect:
+	MISG A 1 A_Lower
+	MISG A 0 A_Lower
+	Loop
+   Select:
+	MISG A 1 A_Raise
+	MISG A 0 A_Raise
+	Loop
+   AltFire:
+    MISG A 0 A_JumpIfInventory("FlakCheck",1,"DownFlak")
+	MISG A 0
+	Goto UpFlak
+   UpFlak:
+   	MISG A 0 A_PlaySound("ShockRocket/Load")
+	MISG AAAAAAAAAAAAAAAAAAAAAAAA 1 A_GiveInventory("FlakCheck",1)
+	Goto Ready //Which will send it to FlakReady... No worries!
+   DownFlak:
+    MISG A 0 A_PlaySound("ShockRocket/Load")
+	MISG AAAAAAAAAAAAAAAAAAAAAAAA 1 A_TakeInventory("FlakCheck",1)
+	Goto Ready
+   Fire:
+    MISG A 0 A_JumpIfInventory("FlakCheck",1,"Flak")
+	MISG A 0 A_JumpIfInventory("RocketAmmunition",1,"FireGo")
+	MISG A 20
+	Goto Ready
+   FireGo:
+	MISG A 0 
+	MISG A 0 A_GunFlash
+	MISG A 0 bright A_PlayWeaponSound("ShockRocket/Fire")
+	MISG A 0 bright A_TakeInventory("RocketAmmunition",1)
+	MISG A 0 bright A_FireCustomMissile("Shock-Rocket",0,0,30,-3)
+	MISG A 0 bright A_Recoil(Random(6,8))
+	MISG AAABBBBBBBBBBBCCDDDDDDCCEEFFGGHH 1
+	TNT1 A 18
+	TNT1 A 0 A_PlaySound("ShockRocket/Load")
+	MISG HHHGGGFFFAAAAA 1
+	MISG A 0 A_ReFire
+	Goto Ready
+   Flash:
+    TNT1 A 0
+	MISF AAABBCCD 1 bright
+	TNT1 A 0
+    Stop
+   Flak:
+    MISG A 0 A_JumpIfInventory("FlakAmmo",1,"FlakGo")
+	MISG A 20
+	Goto Ready //FlakReady. Gg.
+   FlakGo:
+	MISG A 0 
+	MISG A 0 A_GunFlash
+	MISG A 0 bright A_PlayWeaponSound("ShockRocket/Fire")
+	MISG A 0 bright A_TakeInventory("FlakAmmo",1)
+	MISG A 0 bright A_FireCustomMissile("Flak-Shot",0,0,18,-3)
+	MISG A 0 bright A_Recoil(Random(6,8))
+	MISG AAABBBBBBBBBBBCCDDDDDDCCEEFFGGHH 1
+	TNT1 A 18
+	TNT1 A 0 A_PlaySound("ShockRocket/Load")
+	MISG HHHGGGFFFAAAAA 1
+	MISG A 0 A_ReFire
+	Goto Ready //Once again, goes to FlakReady.
+   }
+}
+
+Actor FlakCheck : Inventory
+{
+Inventory.MaxAmount 1
+Inventory.Amount 1
+}
+
+Actor "RocketAmmunition" : Ammo
+{
+	Inventory.PickupMessage "Picked up a Rocket."
+	Inventory.Amount 1
+	Inventory.MaxAmount 30
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 30
+	Inventory.Icon "ROCKA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		ROCK A 0
+		Stop
+	}
+}
+
+Actor "FlakAmmo" : Ammo
+{
+	Inventory.PickupMessage "Picked up a Flak Rocket."
+	Inventory.Amount 1
+	Inventory.MaxAmount 20
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 20
+	Inventory.Icon "FKRKA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		FKRK A 0
+		Stop
+	}
+}
+
+Actor "Shock-Rocket" : Rocket
+{
+  Obituary "%o was leveled by %k's Rocket."
+  SeeSound "" //NO SEE SOUND DAMN YOU.
+  Speed 40
+  Damage (30)
+  Scale 0.56
+  DamageType "Ground"
+  -ROCKETTRAIL
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+	RPGM A 0 bright A_SpawnItemEx("ShockTrail",-3,Random(-4,4),Random(-4,4),0,0,0,0,0,0)
+	RPGM A 0 bright A_SpawnItemEx("ShockTrail",-3,Random(-4,4),Random(-4,4),0,0,0,0,0,0)
+    RPGM A 1 bright A_SpawnItemEx("ShockTrail",-3,Random(-4,4),Random(-4,4),0,0,0,0,0,0)
+    Loop
+  Death:
+    TNT1 A 0 bright A_PlaySound("ShockRocket/Explosion")
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("ShockShrapnel",0,/*Random(-64,64)*/0,Random(0,360),2,Random(0,360))
+    TNT1 A 0 bright A_Explode(50, 90)
+	TNT1 A 0 bright A_SpawnItemEx("ShockSmoke",0,0,4)
+	TNT1 A 0 bright A_SpawnItemEx("ShockDeath",0,0,4)
+	TNT1 AA 0 bright A_SpawnItemEx("ShockSplode",0,0,4)
+    Stop
+  }
+}
+
+Actor ShockTrail
+{
+-SOLID
++NOGRAVITY
++NOCLIP
++NOBLOCKMAP
+RenderStyle Add
+Alpha 0.5
+Scale 0.1
++CLIENTSIDEONLY
++NOTIMEFREEZE
+States
+{
+Spawn:
+BFIR ABCABCABCABC 3 bright A_FadeOut(0.08)
+Stop
+}
+}
+
+Actor ShockSplode
+{
+-SOLID
++NOGRAVITY
++NOCLIP
++NOBLOCKMAP
+RenderStyle Add
+Alpha 0.8
+Scale 1.8
++CLIENTSIDEONLY
++NOTIMEFREEZE
+States
+{
+Spawn:
+MSP1 GHIJKLMNOP 2 bright
+Stop
+}
+}
+
+Actor ShockShrapnel
+{
+	Speed	24
+	Height	3
+	Radius	3
+	Mass	8
+	Damage	(1)
+	RenderStyle	Add
+	Obituary "%o was leveled by %k's Rocket."
+	Alpha	0.8 
+	Scale	0.1
+	PROJECTILE
+	-NOGRAVITY
+	-ROCKETTRAIL
+	+RIPPER
+	+NOTIMEFREEZE
+	States
+	{
+  	Spawn:
+    BFIR A 1 bright
+	BFIR AA 1 bright
+	BFIR B 1 bright
+	BFIR BB 1 bright
+	BFIR C 1 bright
+	BFIR CC 1 bright
+  	Spawn2:
+	BFIR ABC 4 bright
+	Loop
+  	Death: 
+	NULL A 0
+	Stop
+    }
+}
+
+Actor ShockDeath
+{
+-SOLID
++NOGRAVITY
++NOCLIP
++NOBLOCKMAP
++CLIENTSIDEONLY
++NOTIMEFREEZE
+RenderStyle None
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(20,30))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(30,40))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(40,50))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(50,60))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(60,70))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(70,80))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(80,90))
+TNT1 A 0 A_CustomMissile("ShockDeathVaporSpawner", 0, 0, Random(0,360), 2, Random(90,100))
+Stop
+}
+}
+
+Actor ShockDeathVaporSpawner
+{
+   Speed 5
+   Damage 0
+   PROJECTILE
+   Radius 2
+   +DONTSPLASH
+   +DOOMBOUNCE
+   +NOTIMEFREEZE
+   Height 2
+   RenderStyle Translucent
+   Alpha 0.6
+   Scale 0.4
+   States
+   {
+   Spawn:
+      TNT1 AAAAAAAAAAAAAAAA 2 A_SpawnItemEx("ShockDeathVapor",Random(-8,8),Random(-8,8),Random(-4,12))
+	  Stop
+   } 
+}
+
+Actor ShockDeathVapor
+{
+   Speed 0
+   Damage 0
+   PROJECTILE
+   Radius 2
+   +DONTSPLASH
+   +NOTIMEFREEZE
+   Height 2
+   RenderStyle Translucent
+   Alpha 0.6
+   Scale 0.16
+   +CLIENTSIDEONLY
+   States
+   {
+   Spawn:
+      SMOK AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQ 1 A_FadeOut(0.02)
+	  Stop
+   } 
+}
+
+Actor ShockSmoke
+{
+   Speed 5
+   Damage 0
+   Radius 2
+   Height 4
+   PROJECTILE
+   +DONTSPLASH
+   +NOCLIP
+   RenderStyle Translucent
+   Alpha 0.34
+   Scale 0.3
+   +CLIENTSIDEONLY
+   +NOTIMEFREEZE
+   States
+   {
+   Spawn:
+      SMOK ABCDEFGHIJKLMNOPQ 1 A_FadeOut(0.02)
+      Stop
+   } 
+}
+
+Actor "Flak-Shot" : Rocket
+{
+  Obituary "%o was leveled by %k's Flak."
+  SeeSound "" //NO SEE SOUND DAMN YOU.
+  Speed 75
+  Damage (25)
+  Scale 0.7
+  DamageType "Air"
+  -ROCKETTRAIL
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAA 1 bright
+	TNT1 A 0 bright
+    Goto Death
+  Death:
+    TNT1 A 0 bright A_PlaySound("ShockRocket/Explosion")
+    TNT1 A 0 bright A_Explode(10, 90)
+	TNT1 A 0 bright A_SpawnItemEx("FlakVaporGroupSpawner",0,0,4)
+	TNT1 A 0 bright A_SpawnItemEx("FlakDeath",0,0,4)
+    Stop
+  }
+}
+
+Actor FlakVaporGroupSpawner
+{
+-SOLID
++NOGRAVITY
++NOCLIP
++NOBLOCKMAP
++CLIENTSIDEONLY
++NOTIMEFREEZE
+RenderStyle None
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile("FlakVaporSpawner", 0, 0, Random(0,360), 2, Random(-100,100))
+Stop
+}
+}
+
+Actor FlakVaporSpawner
+{
+   Speed 3
+   Damage 0
+   PROJECTILE
+   Radius 2
+   +DONTSPLASH
+   +DOOMBOUNCE
+   +NOTIMEFREEZE
+   Height 2
+   RenderStyle Translucent
+   Alpha 0.6
+   Scale 0.4
+   States
+   {
+   Spawn:
+      TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("FlakVapor",Random(-8,8),Random(-8,8),Random(-4,12))
+	  Stop
+   }
+}
+
+Actor FlakVapor
+{
+   Speed 0
+   Damage 0
+   PROJECTILE
+   Radius 2
+   +DONTSPLASH
+   +NOTIMEFREEZE
+   Height 2
+   RenderStyle Translucent
+   Alpha 0.6
+   Scale 0.08
+   +CLIENTSIDEONLY
+   States
+   {
+   Spawn:
+      SMOK AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQ 1 A_FadeOut(0.02)
+	  Stop
+   }
+}
+
+Actor FlakDeath
+{
+   Speed 0
+   Damage 0
+   PROJECTILE
+   Radius 2
+   +DONTSPLASH
+   +NOTIMEFREEZE
+   Height 2
+   RenderStyle Translucent
+   Alpha 0.74
+   Scale 0.6
+   +CLIENTSIDEONLY
+   States
+   {
+   Spawn:
+      SMOK AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQ 1 A_FadeOut(0.01)
+	  Stop
+   }
+}

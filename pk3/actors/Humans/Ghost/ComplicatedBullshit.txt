@@ -1,0 +1,68 @@
+//Since Zandronum didn't want Ghost's cloaking to work online, this is my workaround.
+Actor Action_Cloak : CustomInventory
+{
+   Inventory.Amount 1
+   Inventory.MaxAmount 1
+   -INVBAR
+   States
+   {
+       Use:
+	   TNT1 A 0
+       TNT1 A 1 A_SetTranslucent(0.95)
+       TNT1 A 1 A_SetTranslucent(0.9)
+       TNT1 A 1 A_SetTranslucent(0.85)
+       TNT1 A 1 A_SetTranslucent(0.8)
+       TNT1 A 1 A_SetTranslucent(0.75)
+       TNT1 A 1 A_SetTranslucent(0.7)
+       TNT1 A 1 A_SetTranslucent(0.65)
+       TNT1 A 1 A_SetTranslucent(0.6)
+       TNT1 A 1 A_SetTranslucent(0.55)
+       TNT1 A 1 A_SetTranslucent(0.5)
+       TNT1 A 1 A_SetTranslucent(0.45)
+       TNT1 A 1 A_SetTranslucent(0.4)
+       TNT1 A 1 A_SetTranslucent(0.35)
+       TNT1 A 1 A_SetTranslucent(0.3)
+       TNT1 A 1 A_SetTranslucent(0.25)
+       TNT1 A 1 A_SetTranslucent(0.2)
+       TNT1 A 1 A_SetTranslucent(0.15)
+       TNT1 A 1 A_SetTranslucent(0.1)
+       TNT1 A 1 A_SetTranslucent(0.05)
+       TNT1 A 1 A_SetTranslucent(0.01)
+	   TNT1 A 0
+       Fail //To keep.
+   }
+}
+
+Actor Action_Uncloak : CustomInventory
+{
+   Inventory.Amount 1
+   Inventory.MaxAmount 1
+   -INVBAR
+   States
+   {
+       Use:
+	   TNT1 A 0
+       TNT1 A 1 A_SetTranslucent(0.05)
+       TNT1 A 1 A_SetTranslucent(0.1)
+       TNT1 A 1 A_SetTranslucent(0.15)
+       TNT1 A 1 A_SetTranslucent(0.2)
+       TNT1 A 1 A_SetTranslucent(0.25)
+       TNT1 A 1 A_SetTranslucent(0.3)
+       TNT1 A 1 A_SetTranslucent(0.35)
+       TNT1 A 1 A_SetTranslucent(0.4)
+       TNT1 A 1 A_SetTranslucent(0.45)
+       TNT1 A 1 A_SetTranslucent(0.5)
+       TNT1 A 1 A_SetTranslucent(0.55)
+       TNT1 A 1 A_SetTranslucent(0.6)
+       TNT1 A 1 A_SetTranslucent(0.65)
+       TNT1 A 1 A_SetTranslucent(0.7)
+       TNT1 A 1 A_SetTranslucent(0.75)
+       TNT1 A 1 A_SetTranslucent(0.8)
+       TNT1 A 1 A_SetTranslucent(0.85)
+       TNT1 A 1 A_SetTranslucent(0.9)
+       TNT1 A 1 A_SetTranslucent(0.95)
+       TNT1 A 1 A_SetTranslucent(1.00)
+	   TNT1 A 0
+       Fail //To keep.
+   }
+}

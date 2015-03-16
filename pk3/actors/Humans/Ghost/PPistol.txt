@@ -1,0 +1,126 @@
+//Plasma-Pistol.
+Actor "Plasma-Pistol" : Weapon
+{
+   Inventory.PickupMessage "You got the Plasma Pistol!"
+   Obituary "%o was melted by %k's Plasma-Projectiles."
+   Weapon.AmmoType1 "PlasmaCell"
+   Weapon.AmmoGive1 45
+   Weapon.AmmoUse1 1
+   Weapon.AmmoUse2 1
+   Weapon.AmmoGive2 500
+   Weapon.AmmoType2 "CloakEnergy"
+   Weapon.KickBack 0
+   Weapon.SlotNumber 2
+   +AMMO_OPTIONAL
+   +ALT_AMMO_OPTIONAL
+   +WEAPON.NOAUTOAIM
+   +INVENTORY.UNDROPPABLE
+   States
+   {
+   Spawn:
+	TNT1 A 0
+	Stop
+   Cloaked:
+	PLBG A 1 //This is a idle state, for which the player may not fire.
+   Ready:
+	PLBG A 1 A_WeaponReady
+	Loop
+   Deselect:
+	PLBG A 1 A_Lower
+	PLBG A 0 A_Lower
+	Loop
+   Select:
+	PLBG A 1 A_Raise
+	PLBG A 0 A_Raise
+	Loop
+   Fire:
+	PLBG A 0 A_JumpIfInventory("PlasmaCount",5,"FireRecoil")
+	PLBG A 0 A_JumpIfInventory("PlasmaCell",1,"FireGo")
+	PLBG A 0 A_JumpIfInventory("PlasmaCount",1,"FireRecoil")
+	PLBG AAAAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	Goto Ready
+   FireGo:
+	PLBG A 0 A_JumpIfInventory("Cloaked",1,"Cloaked")
+    PLBG B 0 A_GiveInventory("PlasmaCount", 1)
+	PLBG B 0 A_PlayWeaponSound("GhostPlasma/Fire")
+	PLBG B 0 Bright A_TakeInventory("PlasmaCell",1)
+	PLBG B 0 Bright A_FireCustomMissile("PlasmaShot",0,0,10,-4)
+	PLBG BBC 1 Bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	PLBG C 0 A_ReFire
+   FireRecoil:
+	PLBG CDDDDEEFFAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	PLBG C 0 A_TakeInventory("PlasmaCount", 5)
+	Goto Ready
+   }
+}
+
+Actor "PlasmaShot"
+{
+   Radius 3
+   Height 6
+   Speed 48
+   Damage (8)
+   Scale 0.6
+   PROJECTILE
+   +SKYEXPLODE
+   +FORCEXYBILLBOARD
+   +NOTIMEFREEZE
+   DeathSound "GhostPlasma/Hit"
+   RenderStyle Add
+   States
+   {
+   Spawn:
+      PLAS AABB 1 bright A_SpawnItemEx("PlasmaTrail",0,0,0)
+      Loop
+   Death:
+      PLAD ABCDE 3 bright
+      Stop
+   }
+}
+
+Actor "PlasmaTrail"
+{   
+   Radius 0
+   Height 0
+   Speed 0
+   PROJECTILE
+   +NOCLIP
+   +NOGRAVITY
+   +NOBLOCKMAP
+   +FORCEXYBILLBOARD
+   +NOTIMEFREEZE
+   Scale 0.6
+   RenderStyle Translucent
+   Alpha 1.00
+   States
+   {
+   Spawn:
+   Death:
+   	  PLAS A 1 bright A_SetTranslucent(0.9)
+	  PLAS A 1 bright A_SetTranslucent(0.75)
+	  PLAS B 1 bright A_SetTranslucent(0.5)
+	  PLAS B 1 bright A_SetTranslucent(0.25)
+	  PLAS A 1 bright A_SetTranslucent(0.1)
+	  PLAS A 1 bright A_SetTranslucent(0.0)
+	  Stop
+   }
+}
+
+Actor PlasmaCell : Ammo
+{
+	Inventory.PickupMessage "Picked up a Plasma kit."
+	Inventory.Amount 5
+	Inventory.MaxAmount 50
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 50
+	Inventory.Icon "ECLPA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		ECLP A 0
+		Stop
+	}
+}
+
+Actor PlasmaCount : Inventory {Inventory.MaxAmount 5}

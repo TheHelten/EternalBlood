@@ -1,0 +1,70 @@
+//===========================================================================
+//
+// ZSec Player
+//
+//===========================================================================
+Actor ZSecClass : PlayerPawn
+{
+	Speed 1
+	Health 100
+	Radius 16
+	Height 56
+	Mass 100
+	PainChance 255
+	Player.ColorRange 112, 127
+	Player.DisplayName "ZSec"
+	Player.SoundClass "ZSecOp"
+	Player.CrouchSprite ""
+	Player.StartItem "Sub Machine-Gun", 1
+	Player.StartItem "ZSec-SMGClip", 40
+	Player.StartItem "ZSec-SMGAmmo", 200
+	Player.StartItem "Shot-Gun", 1
+	Player.StartItem "ZSecShellIn", 8
+	Player.StartItem "ZSecShell", 40
+	Player.StartItem "Flare Gun", 1
+	Player.StartItem "ZSecArmor"
+	Player.ForwardMove 0.84
+	Player.SideMove 0.78
+	Player.JumpZ 8
+	DamageFactor "Air", 0.25
+	DamageFactor "HumanHeal", -1.0
+	Limitedtoteam 1
+	+GHOST
+	States
+	{
+	Spawn:
+		ZSEC A -1
+		stop
+	See:
+		ZSEC AAAAA 1
+		ZSEC BBBBB 1
+		ZSEC B 0 A_SpawnItemEx("PlayerFootStep", 0, 0, 0, 0, 0, -20, 0,0, 0) 
+		ZSEC CCCCC 1
+		ZSEC DDDDD 1
+		ZSEC D 0 A_SpawnItemEx("PlayerFootStep", 0, 0, 0, 0, 0, -20, 0,0, 0)
+		Loop
+	Missile:
+		ZSEC E 6
+		Goto Spawn
+	Melee:
+		ZSEC F 3 BRIGHT
+		Goto Missile
+	Pain.FlareBurns:
+		ZSEC G 2 ACS_Execute (998, 0, 0, 0, 0)
+		ZSEC G 2 A_Pain
+		Goto Spawn
+	Pain:
+		ZSEC G 2
+		ZSEC G 2 A_Pain
+		Goto Spawn
+	Death:
+		ZSEC H 5
+		ZSEC I 5 A_PlaySound ("chainguy/death")
+		ZSEC J 5 A_NoBlocking
+		ZSEC K 5
+		ZSEC L -1
+		stop
+	}
+}
+
+Actor ZSecArmor : GreenArmor {Armor.SaveAmount 50}

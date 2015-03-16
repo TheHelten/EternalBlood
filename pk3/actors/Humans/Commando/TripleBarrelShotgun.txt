@@ -1,0 +1,69 @@
+//Fucking Triple Barrel Shotgun.
+Actor "Triple Barreled Shotgun" : Weapon
+{
+	Weapon.SlotNumber 3
+	Weapon.AmmoType1 "TripleBarrelShotgunShell"
+	Weapon.AmmoUse1 3
+	Weapon.AmmoGive1 6
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.NOAUTOAIM
+	+AMMO_OPTIONAL
+	States
+	{
+	Ready:
+	 LEVG A 1 A_WeaponReady
+	 Loop
+	Select:
+	 LEVG A 1 A_Raise
+	 LEVG A 0 A_Raise
+	 Loop
+	Deselect:
+	 LEVG A 1 A_Lower
+	 LEVG A 0 A_Lower
+	 Loop
+	Empty:
+	 LEVG A 0 A_PlaySoundEx("TripleBarrelShotgun/Open","auto",0)
+	 LEVG A 20
+	 Goto Ready
+	Fire:
+	 LEVG A 0 A_JumpIfNoAmmo("Empty")
+	 LEVF A 0 bright A_PlaySoundEx("TripleBarrelShotgun/Fire","auto",0)
+	 LEVF A 0 bright A_FireBullets(10,5,18,random(4, 5),"BulletPuff")
+	 LEVF A 0 Radius_Quake(4, 4, 0, 1, 0)
+	 LEVF AABBB 1 bright
+	 LEVG BCDEFFEDCBAA 1
+	 LEVG A 0 A_JumpIfNoAmmo("Ready")
+	 LAVR A 0 A_PlaySoundEx("TripleBarrelShotgun/Open","auto",0)
+	 LEVR ABCDE 1
+	 TNT1 A 4
+	 LEVR FGHIJKLMNO 1 //Ugh looping animation THREE TIMES. Oh well, only way to be efficient.
+	 TNT1 A 8 A_PlaySoundEx("TripleBarrelShotgun/Load1","auto",0)
+	 LEVR FGHIJKLMNO 1
+	 TNT1 A 8 A_PlaySoundEx("TripleBarrelShotgun/Load2","auto",0)
+	 LEVR FGHIJKLMNO 1
+	 TNT1 A 12 A_PlaySoundEx("TripleBarrelShotgun/Load3","auto",0)
+	 LEVR EDCBA 1
+	 LEVR E 0 A_PlaySoundEx("TripleBarrelShotgun/Close","auto",0)
+	 LEVG BCDEFEDCB 1
+	 LEVG AAA 1
+	 LEVG A 0 A_ReFire //To be honest, if this is here, I don't know why the fuck I put the +WEAPON.NOAUTOFIRE flag on.
+	 Goto Ready
+	}
+}
+
+Actor TripleBarrelShotgunShell : Ammo
+{
+  +INVENTORY.IGNORESKILL
+  Inventory.PickupMessage "Picked up a TBS-Shell."
+  Inventory.Amount 3
+  Inventory.MaxAmount 60
+  Inventory.Icon "SHELA0"
+  Ammo.BackPackAmount 6
+  Ammo.BackPackMaxAmount 60
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    Stop
+  }
+}

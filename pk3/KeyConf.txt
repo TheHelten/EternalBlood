@@ -1,0 +1,26 @@
+ClearPlayerClasses
+
+//Humans
+
+AddPlayerClass MedicClass
+AddPlayerClass GhostClass
+AddPlayerClass RocketeerClass
+AddPlayerClass CommandoClass
+AddPlayerClass GoliathClass
+//AddPlayerClass
+
+//HellSpawn
+
+AddPlayerClass CybruiserClass
+AddPlayerClass Guardianclass
+AddPlayerClass ZSecClass
+AddPlayerClass CorpulentClass //Fresh from R101, taken from Helten's "Scurge Hive".
+//AddPlayerClass
+
+//Aeratins
+
+//AddPlayerClass HeraldClass
+//AddPlayerClass
+//AddPlayerClass
+//AddPlayerClass
+//AddPlayerClass

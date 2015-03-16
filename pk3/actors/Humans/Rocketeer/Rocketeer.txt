@@ -1,0 +1,77 @@
+//===========================================================================
+//
+// Rocketeer Player
+//
+//===========================================================================
+Actor RocketeerClass : PlayerPawn
+{
+	Speed 1
+	Health 110
+	Radius 16
+	Height 56
+	Mass 100
+	PainChance 255
+	Player.ColorRange 112, 127
+	Player.MaxHealth 110
+	Player.DisplayName "Rocketeer"
+	Player.SoundClass "Marine"
+	Player.CrouchSprite ""
+	Player.StartItem "GreenArmor" //No value, so it presents 100 points of Green-Armor.
+	Player.StartItem "AA-AT Launcher", 1
+	Player.StartItem "FlakAmmo", 20
+	Player.StartItem "RocketAmmunition", 30
+	Player.StartItem "Rocketeer-Pipes", 1
+	Player.StartItem "PipeBombAmmo", 20
+	Player.StartItem "Rocketeer-Pistol", 1
+	Player.ForwardMove 0.72
+	Player.SideMove 0.66
+	Player.JumpZ 8
+	DamageFactor "Air", 0.25
+	DamageFactor "CyRocket", 0.75
+	DamageFactor "CyPlasma", 0.65
+	Limitedtoteam 0
+	+GHOST
+	States
+	{
+	Spawn:
+		PL5S A 1
+		Loop
+	See:
+		PL5S AAAAAA 1
+		PL5S BBBBB 1
+		PL5S B 0 A_SpawnItemEx("PlayerFootStep", 0, 0, 0, 0, 0, -20, 0,0, 0) 
+		PL5S CCCCCC 1
+		PL5S DDDDD 1
+		PL5S D 0 A_SpawnItemEx("PlayerFootStep", 0, 0, 0, 0, 0, -20, 0,0, 0) 
+		Loop
+	Missile:
+		PL5S E 6
+		Goto Spawn
+	Melee:
+		PL5S F 3 BRIGHT
+		Goto Missile
+	Pain.FlareBurns:
+		PL5S G 2 ACS_ExecuteAlways (998, 0, 0, 0, 0)
+		PL5S G 2 A_Pain
+		Goto Spawn
+	Pain:
+		PL5S G 2
+		PL5S G 2 A_Pain
+		Goto Spawn
+	Pain.DeathDrain:
+		PL5S G 0 A_GiveToTarget("Health",Random(5,10))
+		PL5S G 2
+		PL5S G 2 A_Pain
+		Goto Spawn
+	Death.DeathDrain:
+		PL5S H 0 A_GiveToTarget("Health",Random(50,150))
+	Death:
+		PL5S H 10
+		PL5S I 10 A_PlayerScream
+		PL5S J 10 A_NoBlocking
+		PL5S KLM 10
+		PL5S N 0
+		PL5S N -1
+		Goto Death+6
+	}
+}

@@ -1,0 +1,73 @@
+/*
+
+DECORATE file for Eternal Blood. This will contain all the pawns/actors
+necessary to play the actual wad...
+
+*/
+
+//Various---- This is for stuff that can go to anyone. Of course, not
+//all of it spreads to all of the classes individually...
+
+#Include "actors/various/Various.txt"
+#Include "actors/various/Bulletpuffs.txt"
+#Include "actors/various/Noitems.txt"
+
+//Humans-
+
+//Medic---
+
+#Include "actors/humans/medic/Medic.txt"
+#Include "actors/humans/medic/MedicGun.txt"
+#Include "actors/humans/medic/AssaultRifle.txt"
+#Include "actors/humans/medic/Satchels.txt"
+
+//Ghost---
+
+#Include "actors/humans/ghost/ComplicatedBullshit.txt" //Cloaking
+
+#Include "actors/humans/ghost/Ghost.txt"
+#Include "actors/humans/ghost/GRifle.txt"
+#Include "actors/humans/ghost/PPistol.txt"
+#Include "actors/humans/ghost/Knife.txt"
+
+//Rocketeer---
+
+#Include "actors/humans/rocketeer/Rocketeer.txt"
+#Include "actors/humans/rocketeer/RocketLauncher.txt"
+#Include "actors/humans/rocketeer/Pipebombs.txt"
+#Include "actors/humans/rocketeer/StandardPistol.txt"
+
+//Commando---
+
+#Include "actors/humans/commando/Commando.txt"
+#Include "actors/humans/commando/TripleBarrelShotgun.txt"
+#Include "actors/humans/commando/PulsePlasmaGun.txt"
+
+//Goliath---
+
+#Include "actors/humans/goliath/GoliathClass.txt"
+#Include "actors/humans/goliath/GoliathWeapon.txt"
+
+//HellSpawn-
+
+//Cybruiser---
+
+#Include "actors/hellspawn/cybruiser/Cybruiser.txt"
+#Include "actors/hellspawn/cybruiser/CybruiserLauncher.txt"
+
+//Guardian---
+
+#Include "actors/hellspawn/guardian/GuardianClass.txt"
+#Include "actors/hellspawn/guardian/GuardianSword.txt"
+
+//ZSec---
+
+#Include "actors/hellspawn/zsec/ZSec.txt"
+#Include "actors/hellspawn/zsec/ZShotgun.txt"
+#Include "actors/hellspawn/zsec/ZSMG.txt"
+#Include "actors/hellspawn/zsec/ZFlare.txt"
+
+//Corpulent---
+
+#Include "actors/hellspawn/corpulent/CorpulentClass.txt"
+#Include "actors/hellspawn/corpulent/CorpulentMouth.txt"

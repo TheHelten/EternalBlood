@@ -1,0 +1,61 @@
+//NIOFE! [Ok ok don't shoot me]
+Actor "Ghost-Knife" : Weapon
+{
+  +WEAPON.WIMPY_WEAPON
+  +WEAPON.MELEEWEAPON
+  +NOEXTREMEDEATH
+  +ALT_AMMO_OPTIONAL
+  +AMMO_OPTIONAL
+  +INVENTORY.UNDROPPABLE
+  Weapon.AmmoUse2 1
+  Weapon.AmmoGive2 500
+  Weapon.AmmoType2 "CloakEnergy"
+  Obituary "%o was sliced by %k's Knife."
+  Weapon.KickBack 0
+  Weapon.SlotNumber 1
+  States
+  {
+  Spawn:
+	TNT1 A 0
+    Stop
+  Ready:
+    KNFR ABCDE 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	KNFG A 1 A_WeaponReady
+    Goto Ready+5
+  Deselect:
+	KNFR EDCBA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+	TNT1 A 1 A_Lower
+    Goto Deselect+5
+  Select:
+	KNFG AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+    Loop
+  Fire:
+    KNFG BB 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+    KNFG C 0 A_CustomPunch(45,1,0,"KnifePuff")
+    KNFG CDDEE 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	TNT1 AAAAAAAAAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+    Goto Ready
+  }
+}
+
+Actor KnifePuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +NOEXTREMEDEATH
+  +PUFFONACTORS
+  RenderStyle Add
+  Alpha 1.0
+  SeeSound "Knife/HitThing"
+  AttackSound "Knife/HitWall"
+  ActiveSound "Knife/Miss"
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 1
+	TNT1 A 0
+    Stop
+  }
+}  

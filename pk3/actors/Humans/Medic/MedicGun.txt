@@ -1,0 +1,238 @@
+//Patch Kit.
+Actor "Patch Kit" : Weapon
+{
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 200
+	Weapon.AmmoType1 "PatchHealth"
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive2 10
+	Weapon.AmmoType2 "PatchAmmo"
+	Weapon.SlotNumber 1
+	Inventory.PickupMessage "Picked up a Patch Kit!"
+	+WEAPON.NOAUTOAIM
+	+AMMO_OPTIONAL
+	+ALT_AMMO_OPTIONAL
+	+NOALERT
+	+INVENTORY.UNDROPPABLE
+	Obituary "%o somehow died from being healed."
+	States
+	{
+	Deselect:
+		AMHB A 0
+		AMHB A 0 A_JumpIfInventory("PatchSwap",2,"AmmoDown")
+		AMHB A 0 A_JumpIfInventory("PatchSwap",1,"HealthDown")
+		AMHB A 1 A_Lower
+		AMHB A 0 A_Lower
+		Goto Deselect+3
+	AmmoDown:
+		AMMU AABCDEFGHIJKLMNOPQR 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto Deselect+3
+	HealthDown:
+		HEAL BCDEFGHIJKLMNOPQRST 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto Deselect+3
+	Select:
+		AMHB A 1 A_Raise
+		AMHB A 0 A_Raise
+		Loop
+	Ready:
+		HEAG D 0 A_TakeInventory("MedicFire",1)
+		AMHB A 0 A_JumpIfInventory("PatchSwap",2,"AmmoUp")
+		AMHB A 0 A_JumpIfInventory("PatchSwap",1,"HealthUp")
+		HEAL A 1 A_WeaponReady
+		Goto Ready+3
+	AmmoReady:
+		AMMU A 1 A_WeaponReady
+		AMMU A 0 A_SpawnItemEx("GhostPatchPack",64,0,4)
+		Goto AmmoReady
+	AmmoUp2:
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMMU RQPONMLKJIHGFEDCBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto AmmoReady
+	HealthUp2:
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		HEAL TSRQPONMLKJIHGFEDCB 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto Ready+3
+	AmmoUp:
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMMU RQPONMLKJIHGFEDCBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMMU A 0 A_PlaySoundEx("HealPack/Switch","SoundSlot10")
+		Goto AmmoReady
+	HealthUp:
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		HEAL TSRQPONMLKJIHGFEDCB 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		HEAL A 0 A_PlaySoundEx("HealPack/Switch","SoundSlot10")
+		Goto Ready+3
+	FireJump:
+		HEAG D 0 A_JumpIfInventory("PatchHealth",1,"FireHealthGo")
+		Goto FireHealthGo+5
+	Fire:
+		AMHB A 0 A_JumpIfInventory("PatchSwap",2,"AmmoFire")
+		AMHB A 0 A_JumpIfInventory("MedicFire",1,"FireJump")
+		HEAG AABBCCDD 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+	FireHealth:
+		HEAG D 0 A_JumpIfInventory("PatchHealth",1,"FireHealthGo")
+		Goto FireHealthGo+5
+	FireHealthGo:
+		HEAG D 0 A_GiveInventory("MedicFire",1)
+		HEAG D 0 A_TakeInventory("PatchHealth",1)
+		HEAG D 0 A_FireCustomMissile("HealBolt",0,0,Random(-4,4),Random(-8,0))
+		HEAG D 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		HEAG D 0 A_ReFire
+		HEAG D 0 A_TakeInventory("MedicFire",1)
+		HEAG DDCCBBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto Ready+3
+	AmmoFire:
+		AMHB A 0 A_JumpIfInventory("PatchAmmo",1,"AmmoFireGo")
+		AMMG AABBCCDDDDDDDDCCBBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto AmmoReady
+	AmmoFireGo:
+		AMHB A 0 A_SpawnItemEx("PatchBackPack",64,0,4)
+		AMHB A 0 A_TakeInventory("PatchAmmo",1)
+		AMMG AABBCCDDDDDDDDCCBBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		Goto AmmoReady
+	AltFire:
+		AMHB A 0 A_JumpIfInventory("PatchSwap",2,"AltHealth")
+	AltAmmo:
+		AMHB A 0 A_GiveInventory("PatchSwap",1)
+		HEAL BCDEFGHIJKLMNOPQRST 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMMU RQPONMLKJIHGFEDCBAA 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMHB A 0 A_PlaySoundEx("HealPack/Switch","SoundSlot10")
+		Goto AmmoReady
+	AltHealth:
+		AMHB A 0 A_TakeInventory("PatchSwap",1)
+		AMMU AABCDEFGHIJKLMNOPQR 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMHB A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		HEAL TSRQPONMLKJIHGFEDCB 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+		AMHB A 0 A_PlaySoundEx("HealPack/Switch","SoundSlot10")
+		Goto Ready+3
+	Spawn:
+		STIM A 0
+		Stop
+	}
+}	
+
+Actor PatchSwap : Inventory
+{
+Inventory.MaxAmount 2
+Inventory.Amount 1
+}
+
+Actor MedicFire : Inventory
+{
+Inventory.MaxAmount 1
+Inventory.Amount 1
+}
+
+Actor GhostPatchPack
+{   
+   Radius 0
+   Height 0
+   Speed 0
+   PROJECTILE
+   +NOTIMEFREEZE
+   +NOINTERACTION
+   +CLIENTSIDEONLY
+   +NOCLIP
+   +NOGRAVITY
+   +NOBLOCKMAP
+   Scale 1.0
+   RenderStyle Translucent
+   Alpha 0.5
+   States
+   {
+   Spawn:
+   Death:
+   	  BPAK A 0
+      BPAK A 1
+      BPAK A 0
+	  Stop
+   }
+}
+
+Actor PatchBackPack : BackPack
+{
+	Inventory.PickupMessage "Grabbed a BackPack placed by a Medic."
+	Inventory.PickupSound "BackPack/Grab"
+	+INVENTORY.IGNORESKILL
+	+NOTIMEFREEZE
+	States
+	{
+	Spawn:
+		BPAK A 0
+		BPAK A 80 //This, tied in with the Fade, makes it 5 seconds in total.
+		BPAK AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeOut(0.01)
+		Stop
+	
+	}
+}
+
+Actor PatchAmmo : Ammo
+{
+	Inventory.PickupMessage "Picked up a Package for the Patch Kit."
+	Inventory.Amount 10
+	Inventory.MaxAmount 10
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 10
+	Inventory.Icon "BPAKA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		BPAK A 0
+		Stop
+	}
+}
+
+Actor PatchHealth : Ammo
+{
+	Inventory.PickupMessage "Picked up a Package for the Patch Kit."
+	Inventory.Amount 200
+	Inventory.MaxAmount 200
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 200
+	Inventory.Icon "MEDIA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		MEDI A 0
+		Stop
+	}
+}
+
+Actor HealBolt
+{ 
+    Scale 0.075
+    Alpha 0.70
+	Radius 1
+	Height 2
+    Damage (-1)
+    Speed 20
+    SeeSound ""
+    DeathSound ""
+	Obituary "%o somehow died from being healed."
+	DamageType "HumanHeal"
+	Projectile
+	+RANDOMIZE
+	+FORCEXYBILLBOARD
+	+NOTIMEFREEZE
+	-RIPPER
+    RenderStyle add
+    States
+    {
+    Spawn:
+	  TNT1 A 0
+      HEAP AAAAA 1 Bright
+	  HEAP AAAAA 1 Bright A_FadeOut(0.2)
+      TNT1 A 0
+      Goto Death
+   Death:
+      TNT1 A 0
+      TNT1 A 0
+      TNT1 A 0
+      Stop
+   }
+}

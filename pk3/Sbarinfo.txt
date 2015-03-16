@@ -1,0 +1,332 @@
+/*
+Eternal Blood HUD - By: StrikerMan780
+
+NOTES
+-----
+LED hud text was made in GIMP, using the font Digital-7 (Included),
+at 15px with Hinting and Antialiasing Enabled. Auto-Hinting is off.
+
+Mode Name Text uses the color #72FF00, and make sure the image height
+once cropped is 12px. Giving one blank line of pixels above and below
+the text, to be sure it is properly centered. (This is in case you
+need to make new graphics for new weapons and their fire modes.
+check the existing fire mode indicator graphics for reference.)
+
+Index Font graphics are from Alien Vendetta.
+(Because the Default DOOM ones suck ass.)
+
+There will need to be a bug report for True Color PNG Fonts,
+since for some reason Skulltag likes to downsample them to
+the DooM Palette regardless of being full-color, or whether
+or not you set it to untranslated. This messes up the
+appearance of the LED numbers for frags and wins.
+*/
+
+height 20;
+
+statusbar normal, forcescaled
+{
+	AspectRatio "4:3"
+	{
+		drawimage "HUDBAR", 0, 180;
+	}
+	AspectRatio "5:4"
+	{
+		drawimage "HUDBAR", 0, 180;
+	}
+	AspectRatio "16:9"
+	{
+		drawimage "HUDWIDE", -53, 180;
+	}
+	AspectRatio "16:10"
+	{
+		drawimage "HUDWIDE", -53, 180;
+	}
+
+	// Bars
+	DrawBar "HEALBAR", "BARBACK1", health, horizontal, 12, 184;
+	DrawBar "ARMORBAR", "BARBACK1", armor, horizontal, 12, 192;
+	DrawBar "AMMOBAR", "BARBACK2", ammo1, horizontal, 274, 184;
+	IsSelected not "Rocketeer-Pipes"
+	{
+		DrawBar "AMMOBAR", "BARBACK2", ammo2, horizontal, 274, 192;
+	}
+
+	// Numbers
+	drawnumber 3, INDEXFONT_DOOM, red, health, 92, 183;
+	drawnumber 3, INDEXFONT_DOOM, green, armor, 92, 191;
+	drawnumber 3, INDEXFONT_DOOM, yellow, ammo1, 270, 183;
+	IsSelected not "Rocketeer-Pipes"
+	{
+		drawnumber 3, INDEXFONT_DOOM, yellow, ammo2, 270, 191;
+	}
+	drawnumber 3, FRAGFONT, untranslated, frags, fillzeros, 134, 184;
+
+	// Team Wins
+	// NOTE: teamscore does not work for showing wins in TLMS. It will be
+	// necessary to submit a feature request for a 'teamwins' parameter
+	// for drawnumber in skulltag. It's functionality would be to show
+	// the number of wins for the specified team.
+
+	// Also, a request for an OnTeam sub-block would be needed.
+
+	// This is just here for reference. If the feature makes it in,
+	// just remove the double-slashes, and make any necessary edits
+	// accordingly.
+
+	//OnTeam "Hellspawn"
+	//{
+	//	drawnumber 2, WINFONT, untranslated, teamwins "Hellspawn", fillzeros, 167, 184;
+	//}
+
+	//OnTeam "United Earth Defense"
+	//{
+	//	drawnumber 2, WINFONT, untranslated, teamwins "United Earth Defense", fillzeros, 167, 184;
+	//}
+
+	// Weapon-Specifics
+	IsSelected "Patch Kit"
+	{
+		InInventory PatchSwap, 2
+		{
+			DrawImage "ALTAMMO", 217, 190, center;
+		}
+		InInventory not PatchSwap, 2
+		{
+			DrawImage "ALTHEAL", 217, 190, center;
+		}
+	}
+
+	IsSelected "AA-AT Launcher"
+	{
+		InInventory FlakCheck, 1
+		{
+			DrawImage "ALTFLAK", 217, 190, center;
+		}
+		InInventory not FlakCheck, 1
+		{
+			DrawImage "ALTROCKT", 217, 190, center;
+		}
+	}
+
+	IsSelected "Assault Rifle", "Satchel Mines"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Sub Machine-Gun"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Flare Gun", "Shot-gun"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Rocketeer-Pistol", "DeathSword"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Left Arm Cannon"//, "Right Arm Cannon"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Ghost-Rifle", "Ghost-Knife"
+	{
+		InInventory Cloaked, 1
+		{
+			DrawImage "ALTCLOAK", 217, 190, center;
+		}
+		InInventory not Cloaked, 1
+		{
+			DrawImage "ALTUNCLK", 217, 190, center;
+		}
+	}
+
+	IsSelected "Plasma-Pistol"
+	{
+		InInventory Cloaked, 1
+		{
+			DrawImage "ALTCLOAK", 217, 190, center;
+		}
+		InInventory not Cloaked, 1
+		{
+			DrawImage "ALTUNCLK", 217, 190, center;
+		}
+	}
+
+	IsSelected "Rocket-Launcher"
+	{
+		InInventory CybruiserFireMode, 2
+		{
+			DrawImage "ALTSELFD", 217, 190, center;
+		}
+		InInventory not CybruiserFireMode, 2
+		{
+			InInventory CybruiserFireMode, 1
+			{
+				DrawImage "ALTPLASM", 217, 190, center;
+			}
+			InInventory not CybruiserFireMode, 1
+			{
+				DrawImage "ALTROCKT", 217, 190, center;
+			}
+		}
+	}
+}
+
+statusbar fullscreen
+{
+	DrawImage "HEALARMO", 3, 183;
+	DrawImage "FRAGSKUL", 101, 184;
+	DrawImage "WINFLAG", 143, 185;
+
+	UsesAmmo
+	{
+		DrawImage "MAINAMMO", 301, 184;
+		UsesSecondaryAmmo
+		{
+			IsSelected not "Rocketeer-Pipes"
+			{
+				DrawImage "SECAMMO", 304, 192;
+			}
+		}
+	}
+
+	// Bars
+	DrawBar "HEALBAR", "BARBACK1", health, horizontal, 12, 184;
+	DrawBar "ARMORBAR", "BARBACK1", armor, horizontal, 12, 192;
+	DrawBar "AMMOBAR", "BARBACK2", ammo1, horizontal, 274, 184;
+	IsSelected not "Rocketeer-Pipes"
+	{
+		DrawBar "AMMOBAR", "BARBACK2", ammo2, horizontal, 274, 192;
+	}
+
+	// Numbers
+	drawnumber 3, INDEXFONT_DOOM, red, health, 92, 183;
+	drawnumber 3, INDEXFONT_DOOM, green, armor, 92, 191;
+	drawnumber 3, INDEXFONT_DOOM, yellow, ammo1, 270, 183;
+	IsSelected not "Rocketeer-Pipes"
+	{
+		drawnumber 3, INDEXFONT_DOOM, yellow, ammo2, 270, 191;
+	}
+	drawnumber 3, FRAGFONT, untranslated, frags, fillzeros, 134, 184;
+
+	// Team Wins
+	// NOTE: teamscore does not work for showing wins in TLMS. It will be
+	// necessary to submit a feature request for a 'teamwins' parameter
+	// for drawnumber in skulltag. It's functionality would be to show
+	// the number of wins for the specified team.
+
+	// Also, a request for an OnTeam sub-block would be needed.
+
+	// This is just here for reference. If the feature makes it in,
+	// just remove the double-slashes, and make any necessary edits
+	// accordingly.
+
+	//OnTeam "Hellspawn"
+	//{
+	//	drawnumber 2, WINFONT, untranslated, teamwins "Hellspawn", fillzeros, 167, 184;
+	//}
+
+	//OnTeam "United Earth Defense"
+	//{
+	//	drawnumber 2, WINFONT, untranslated, teamwins "United Earth Defense", fillzeros, 167, 184;
+	//}
+
+	// Weapon-Specifics
+	IsSelected "Patch Kit"
+	{
+		InInventory PatchSwap, 2
+		{
+			DrawImage "ALTAMMO", 217, 190, center;
+		}
+		InInventory not PatchSwap, 2
+		{
+			DrawImage "ALTHEAL", 217, 190, center;
+		}
+	}
+
+	IsSelected "AA-AT Launcher"
+	{
+		InInventory FlakCheck, 1
+		{
+			DrawImage "ALTFLAK", 217, 190, center;
+		}
+		InInventory not FlakCheck, 1
+		{
+			DrawImage "ALTROCKT", 217, 190, center;
+		}
+	}
+
+	IsSelected "Assault Rifle", "Satchel Mines"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Sub Machine-Gun"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Flare Gun", "Shot-gun"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Rocketeer-Pistol", "DeathSword"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Left Arm Cannon"//, "Right Arm Cannon"
+	{
+		DrawImage "NOALT", 217, 190, center;
+	}
+
+	IsSelected "Ghost-Rifle", "Ghost-Knife"
+	{
+		InInventory Cloaked, 1
+		{
+			DrawImage "ALTCLOAK", 217, 190, center;
+		}
+		InInventory not Cloaked, 1
+		{
+			DrawImage "ALTUNCLK", 217, 190, center;
+		}
+	}
+
+	IsSelected "Plasma-Pistol"
+	{
+		InInventory Cloaked, 1
+		{
+			DrawImage "ALTCLOAK", 217, 190, center;
+		}
+		InInventory not Cloaked, 1
+		{
+			DrawImage "ALTUNCLK", 217, 190, center;
+		}
+	}
+
+	IsSelected "Rocket-Launcher"
+	{
+		InInventory CybruiserFireMode, 2
+		{
+			DrawImage "ALTSELFD", 217, 190, center;
+		}
+		InInventory not CybruiserFireMode, 2
+		{
+			InInventory CybruiserFireMode, 1
+			{
+				DrawImage "ALTPLASM", 217, 190, center;
+			}
+			InInventory not CybruiserFireMode, 1
+			{
+				DrawImage "ALTROCKT", 217, 190, center;
+			}
+		}
+	}
+}

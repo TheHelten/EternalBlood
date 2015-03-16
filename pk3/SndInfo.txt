@@ -1,0 +1,521 @@
+/*
+The SNDINFO file to Eternal Blood. All sounds are from various sources,
+including but not limited to the author of this wad.
+*/
+
+//--Sounds that are used by anything/anyone
+
+//-FootSteps
+
+Playerstep1 						DSPLWLK1
+Playerstep2 						DSPLWLK2
+Playerstep3 						DSPLWLK3
+
+$Random PlayerStep 					{ Playerstep1 Playerstep2 Playerstep3 }
+
+$Limit Playerstep1 0
+$Limit Playerstep2 0
+$Limit Playerstep3 0
+$Limit Playerstep 0
+
+//Bullet Puff Richochet (Should be spelt Rick'o'Shay... :<)
+
+$Random Puff/Richochet	{ Puff/Ric1 Puff/Ric2 Puff/Ric3 Puff/Ric4 }
+
+Puff/Ric1							DSRICH1
+Puff/Ric2							DSRICH2
+Puff/Ric3							DSRICH3
+Puff/Ric4							DSRICH4
+
+//-Mushy-Gushy blood :>
+
+Misc/XDeath1A						DSXDTH1A
+Misc/XDeath1B						DSXDTH1B
+Misc/XDeath1C						DSXDTH1C
+Misc/XDeath1D						DSXDTH1D
+Misc/XDeath1E						DSXDTH1E
+Misc/XDeath1F						DSXDTH1F
+
+$Random Misc/XDeath1				{ Misc/XDeath1A Misc/XDeath1B Misc/XDeath1C Misc/XDeath1D Misc/XDeath1E Misc/XDeath1F }
+
+//--Humans--\\
+
+//-Various Stuff
+
+BackPack/Grab						BACKPACK //Grabbing one of those meaty backpacks placed by a Medic.
+
+Goliath/FootStep1					MACHSTP1 //Stepping...
+Goliath/FootStep2					MACHSTP2 //again...
+
+$Random Goliath/Footstep			{ Goliath/Footstep1 Goliath/Footstep2 }
+
+$Limit Goliath/FootStep1			0
+$Limit Goliath/FootStep2			0
+$Limit Goliath/Footstep 			0
+
+//-Weapons
+
+//Medic
+
+HealPack/Switch						MEDISWIT //Swapping inbetween laying down ammo and spraying health.
+
+AssaultRifle/Fire					ASLTFIRE //Assault-Rifle for the Medic. Handy indeed.
+AssaultRifle/Reload					ASLTLOAD //Assault-Rifle reload sound. You don't wanna hear this much.
+
+Satchel/RemoteClick 				BOMBCLIK //Clicking the Detonate button. :>
+
+Satchel/ThrowBomb   				BOMBTHRW //Throwing a Satchel.
+
+Satchel/Explode1 					MINEEXP1 //One potato.
+Satchel/Explode2 					MINEEXP2 //Two potato. :v
+
+Grenades/Bounce1 					BOUNCE1  //I say potato, you say
+Grenades/Bounce2 					BOUNCE2  //Patatoe, I say tomato,
+Grenades/Bounce3 					BOUNCE3  //You say toematoe.
+
+$Random Grenades/Bounce 			{ Grenades/Bounce1 Grenades/Bounce2 Grenades/Bounce3 }
+$Random Grenades/Explode 			{ Satchel/Explode1 Satchel/Explode2 }
+
+$Limit AssaultRifle/Fire 0
+$Limit AssaultRifle/Reload 0
+$Limit HealPack/Switch 0
+
+//Ghost
+
+$Random GhostRifle/Fire				{ GhostRifle/Fire1 GhostRifle/Fire2 GhostRifle/Fire3 GhostRifle/Fire4 GhostRifle/Fire5 GhostRifle/Fire6 GhostRifle/Fire7 GhostRifle/Fire8 GhostRifle/Fire9 }
+
+GhostRifle/Fire1					GHOSTFR1
+GhostRifle/Fire2					GHOSTFR2
+GhostRifle/Fire3					GHOSTFR3
+GhostRifle/Fire4					GHOSTFR4
+GhostRifle/Fire5					GHOSTFR5
+GhostRifle/Fire6					GHOSTFR6
+GhostRifle/Fire7					GHOSTFR7
+GhostRifle/Fire8					GHOSTFR8
+GhostRifle/Fire9					GHOSTFR9
+
+GhostRifle/Load						GHOSTREL //Ghost-Rifle reload sound. A simple click!
+GhostRifle/Out						GHOSTOUT //Ghost-Rifle being empty. What a awful thing to hear.
+
+//$Volume GhostRifle/Fire 2.25 //<< Never worked
+
+Ghost/Cloak							DSCLOAK
+Ghost/Uncloak						DSUCLOAK
+
+GhostPlasma/Fire					GHOSTPLS //Ghost Plasma-Pistol fire.
+GhostPlasma/Hit 					GHOSTPLH //Ghost Plasma hitting something, be it an object or wall/floor.
+
+Knife/HitThing						KNIFEHIT //Knife hitting an object.
+Knife/HitWall						KNIFEWAL //Knife hitting a wall.
+Knife/Miss							KNIFEAIR //Knife swinging in air.
+
+$Limit GhostRifle/Fire 0
+$Limit GhostRifle/Fire1 0
+$Limit GhostRifle/Fire2 0
+$Limit GhostRifle/Fire3 0
+$Limit GhostRifle/Fire4 0
+$Limit GhostRifle/Fire5 0
+$Limit GhostRifle/Fire6 0
+$Limit GhostRifle/Fire7 0
+$Limit GhostRifle/Fire8 0
+$Limit GhostRifle/Fire9 0
+$Limit GhostRifle/Load 0
+$Limit GhostRifle/Out 0
+$Limit GhostPlasma/Fire 0
+$Limit GhostPlasma/Hit 0
+$Limit Ghost/Cloak 0
+$Limit Ghost/Uncloak 0
+
+//Rocketeer
+
+ShockRocket/Fire1					MISSILE1 //First shot sound.
+ShockRocket/Fire2					MISSILE2 //Second shot sound.
+ShockRocket/Fire3					MISSILE3 //Third shot sound. Don't expect me to have something original for each one of these.
+
+$Random ShockRocket/Fire			{ ShockRocket/Fire1 ShockRocket/Fire2 ShockRocket/Fire3 }
+
+ShockRocket/Load					MISSLOAD //Reloading a missile to the Rocket Launcher.
+
+ShockRocket/Explosion1				BIGBOOM1 //Yummy, gushy, bloody, explosives.
+ShockRocket/Explosion2				BIGBOOM2
+ShockRocket/Explosion3				BIGBOOM3
+ShockRocket/Explosion4				BIGBOOM4
+
+$Random ShockRocket/Explosion		{ ShockRocket/Explosion1 ShockRocket/Explosion2 ShockRocket/Explosion3 ShockRocket/Explosion4 }
+
+RCKTPistol/Fire						ROCKPIST //Pistol firing sound.
+RCKTPistol/Click					DSITEMUP //Sue me.
+
+$Volume RCKTPistol/Fire 0.75
+
+PipeBomb/Toss						DSPIPTHR //No.
+PipeBomb/Bounce						DSPIPBNC //AMERICAAAAAAAAAAAAAAA
+
+//Commando
+
+TripleBarrelShotgun/Fire			TBSFIRE  //Epic Fire Sound.
+TripleBarrelShotgun/Open			TBSOPEN  //Opening...
+TripleBarrelShotgun/Load1			TBSLOAD1 //The reason these aren't randomized is because the...
+TripleBarrelShotgun/Load2			TBSLOAD2 //...sounds are given slight panning for special...
+TripleBarrelShotgun/Load3			TBSLOAD3 //effects, and therefore would be silly used otherwise.
+TripleBarrelShotgun/Close			TBSCLOSE //...Closing.
+
+PulsePlasma/Fire1					PULSPLF1
+PulsePlasma/Fire2					PULSPLF2
+PulsePlasma/Fire3					PULSPLF3
+
+$Random PulsePlasma/Fire			{ PulsePlasma/Fire1 PulsePlasma/Fire2 PulsePlasma/Fire3 }
+PulsePlasma/Hit						PULSHIT
+
+Weapons/ProxHit						PROXHIT
+Weapons/ProxBeep					PROXBEEP
+
+//Goliath
+
+Goliath/AutoCannonFire				MACHGGFR //Boom, boom, boom. CLIKKKIK.
+Goliath/CannonBlastFire				MACHBRFR //BUNOOOHHHOOUUHHHOUHHHHHHH...
+
+Goliath/HellfireMissile				MACHSEGE //Loves me some missiles.
+
+Goliath/FragmentGrenade				MACHVULC //A fragmentation grenade, like a vulture.
+
+Goliath/FragmentHit1				VULCANH1 //Boom 1
+Goliath/FragmentHit2				VULCANH2 //Boom 2
+Goliath/FragmentHit3				VULCANH3 //3 mooB
+
+$Random Goliath/FragmentHit			{ Goliath/FragmentHit1 Goliath/FragmentHit2 Goliath/FragmentHit3 }
+
+$Limit Goliath/AutoCannonFire		0
+$Limit Goliath/CannonBlastFire		0
+$Limit Goliath/FragmentGrenade		0
+$Limit Goliath/FragmentHit1			0
+$Limit Goliath/FragmentHit2			0
+$Limit Goliath/FragmentHit3			0
+
+//--HellSpawn--\\
+
+//-Various Stuff
+
+Cybruiser/Footstep					CYBRUSWA
+
+$Random Guardian/Footstep { Guardian/Walk1 Guardian/Walk2 Guardian/Walk3 }
+
+Guardian/Walk1						GUARDWK1
+Guardian/Walk2						GUARDWK2
+Guardian/Walk3						GUARDWK3
+
+Corpulent/Footstep					CORPSTEP
+
+//Weapons-
+
+//Guardian
+
+DeathSword/Swing					DEATHSWG
+DeathSword/Hit						DEATHHIT
+DeathSword/MissleShoot				DEATHMSL
+DeathSword/MissileHit				DEATHMHT
+
+//Cybruiser
+
+Cybruiser/Reload					CYBRUREL //This sound is annoying. Just saying.
+Cybruiser/PlasmaFire				CYBRUPLF
+Cybruiser/PlasmaHit					CYBRUPLH
+Cybruiser/Beep1						INFRBEP1
+Cybruiser/Beep2						INFRBEP2
+Cybruiser/Beep3						INFRBEP3
+
+//ZSec
+
+ZSMG/Fire							ZSMGFIRE
+ZSMG/Beep							ZSMGBEEP
+ZSMG/Out							ZSMGOUT
+ZSMG/In								ZSMGIN
+ZSMG/Forward						ZSMGFRWD
+ZSMG/Back							ZSMGBACK
+
+FlareGun/Open						FLAREOPN
+FlareGun/Load						FLARELOD
+FlareGun/Close						FLARECLS
+FlareGun/Fire						FLAREFIR
+FlareGun/Puff						FLAREPUF
+
+ZSecShotgun/Fire					ZSGFIRE
+ZSecShotgun/Cock					ZSGCOCK
+ZSecShotgun/Open					ZSGOPEN
+ZSecShotgun/Close					ZSGCLOSE
+
+ZSecShotgun/Load1					ZSGLOAD1
+ZSecShotgun/Load2					ZSGLOAD2
+ZSecShotgun/Load3					ZSGLOAD3
+
+$Random ZSecShotgun/Load 			{ ZSecShotgun/Load1 ZSecShotgun/Load2 ZSecShotgun/Load3 }
+
+//Corpulent
+
+Corpulent/VomitFire					VOMITFIR //Why is there a heavy lack of dumb comments
+Corpulent/VomitHit					VOMITHIT //on hellspawn sounds?
+
+Corpulent/Vomit1					VOMITBL1
+Corpulent/Vomit2					VOMITBL2
+Corpulent/Vomit3					VOMITBL3
+
+$Random Corpulent/Vomit				{ Corpulent/Vomit1 Corpulent/Vomit2 Corpulent/Vomit3 }
+
+Corpulent/Choke1					CHOKEBL1
+Corpulent/Choke2					CHOKEBL2
+Corpulent/Choke3					CHOKEBL3
+Corpulent/Choke4					CHOKEBL4
+Corpulent/Choke5					CHOKEBL5
+
+$Random Corpulent/Choking			{ Corpulent/Choke1 Corpulent/Choke2 Corpulent/Choke3 Corpulent/Choke4 Corpulent/Choke5 }
+
+$Limit Corpulent/Vomit1				0
+$Limit Corpulent/Vomit2				0
+$Limit Corpulent/Vomit3				0
+$Limit Corpulent/Vomit				0
+$Limit Corpulent/VomitFire			0
+$Limit Corpulent/VomitHit			3
+
+//Sound Classes\\
+
+//Cybruiser---
+
+Cybruiser/Death						CYBRUSDI //Due in part to the fact that his certified sound won't play on death.
+
+$PlayerSound	Cybrui	Male	*Death				CYBRUSDI
+$PlayerSound	Cybrui	Male	*XDeath				CYBRUSDI
+$PlayerSound	Cybrui	Male	*Gibbed				CYBRUSDI
+$PlayerSound	Cybrui	Male	*Pain100 			CYBRUIPN
+$PlayerSound	Cybrui	Male	*Pain75 			CYBRUIPN
+$PlayerSound	Cybrui	Male	*Pain50 			CYBRUIPN
+$PlayerSound	Cybrui	Male	*Pain25 			CYBRUIPN
+$PlayerSound	Cybrui	Male	*Grunt				CYBRUIPN
+$PlayerSound	Cybrui	Male	*Land				CYBRUIPN
+$PlayerSound	Cybrui	Male	*Jump				DSNONE
+$PlayerSound	Cybrui	Male	*Fist				DSNONE
+$PlayerSound	Cybrui	Male	*UseFail			CYBRUSTY
+$PlayerSound	Cybrui	Male	*Falling			CYBRUSSE
+$PlayerSound	Cybrui	Male	*Taunt				CYBRUSSE
+
+$PlayerSound	Cybrui	Female	*Death				CYBRUSDI
+$PlayerSound	Cybrui	Female	*XDeath				CYBRUSDI
+$PlayerSound	Cybrui	Female	*Gibbed				CYBRUSDI
+$PlayerSound	Cybrui	Female	*Pain100 			CYBRUIPN
+$PlayerSound	Cybrui	Female	*Pain75 			CYBRUIPN
+$PlayerSound	Cybrui	Female	*Pain50 			CYBRUIPN
+$PlayerSound	Cybrui	Female	*Pain25 			CYBRUIPN
+$PlayerSound	Cybrui	Female	*Grunt				CYBRUIPN
+$PlayerSound	Cybrui	Female	*Land				CYBRUIPN
+$PlayerSound	Cybrui	Female	*Jump				DSNONE
+$PlayerSound	Cybrui	Female	*Fist				DSNONE
+$PlayerSound	Cybrui	Female	*UseFail			CYBRUSTY
+$PlayerSound	Cybrui	Female	*Falling			CYBRUSSE
+$PlayerSound	Cybrui	Female	*Taunt				CYBRUSSE
+
+$PlayerSound	Cybrui	Other	*Death				CYBRUSDI
+$PlayerSound	Cybrui	Other	*XDeath				CYBRUSDI
+$PlayerSound	Cybrui	Other	*Gibbed				CYBRUSDI
+$PlayerSound	Cybrui	Other	*Pain100 			CYBRUIPN
+$PlayerSound	Cybrui	Other	*Pain75 			CYBRUIPN
+$PlayerSound	Cybrui	Other	*Pain50 			CYBRUIPN
+$PlayerSound	Cybrui	Other	*Pain25 			CYBRUIPN
+$PlayerSound	Cybrui	Other	*Grunt				CYBRUIPN
+$PlayerSound	Cybrui	Other	*Land				CYBRUIPN
+$PlayerSound	Cybrui	Other	*Jump				DSNONE
+$PlayerSound	Cybrui	Other	*Fist				DSNONE
+$PlayerSound	Cybrui	Other	*UseFail			CYBRUSTY
+$PlayerSound	Cybrui	Other	*Falling			CYBRUSSE
+$PlayerSound	Cybrui	Other	*Taunt				CYBRUSSE
+
+//Guardian
+
+Deathknight/Death					DSDKNDTH
+
+$PlayerSound	Dethkn	Male	*Death				DSDKNDTH
+$PlayerSound	Dethkn	Male	*XDeath				DSDKNDTH
+$PlayerSound	Dethkn	Male	*Gibbed				DSDKNDTH
+$PlayerSound	Dethkn	Male	*Pain100 			DSDKNPAI
+$PlayerSound	Dethkn	Male	*Pain75 			DSDKNPAI
+$PlayerSound	Dethkn	Male	*Pain50 			DSDKNPAI
+$PlayerSound	Dethkn	Male	*Pain25 			DSDKNPAI
+$PlayerSound	Dethkn	Male	*Grunt				DSDKNPAI
+$PlayerSound	Dethkn	Male	*Land				DSDKNPAI
+$PlayerSound	Dethkn	Male	*Jump				DSNONE
+$PlayerSound	Dethkn	Male	*Fist				DSNONE
+$PlayerSound	Dethkn	Male	*UseFail			DSDKNACT
+$PlayerSound	Dethkn	Male	*Falling			DSDKNSIT
+$PlayerSound	Dethkn	Male	*Taunt				DSDKNSIT
+
+$PlayerSound	Dethkn	Female	*Death				DSDKNDTH
+$PlayerSound	Dethkn	Female	*XDeath				DSDKNDTH
+$PlayerSound	Dethkn	Female	*Gibbed				DSDKNDTH
+$PlayerSound	Dethkn	Female	*Pain100 			DSDKNPAI
+$PlayerSound	Dethkn	Female	*Pain75 			DSDKNPAI
+$PlayerSound	Dethkn	Female	*Pain50 			DSDKNPAI
+$PlayerSound	Dethkn	Female	*Pain25 			DSDKNPAI
+$PlayerSound	Dethkn	Female	*Grunt				DSDKNPAI
+$PlayerSound	Dethkn	Female	*Land				DSDKNPAI
+$PlayerSound	Dethkn	Female	*Jump				DSNONE
+$PlayerSound	Dethkn	Female	*Fist				DSNONE
+$PlayerSound	Dethkn	Female	*UseFail			DSDKNACT
+$PlayerSound	Dethkn	Female	*Falling			DSDKNSIT
+$PlayerSound	Dethkn	Female	*Taunt				DSDKNSIT
+
+$PlayerSound	Dethkn	Other	*Death				DSDKNDTH
+$PlayerSound	Dethkn	Other	*XDeath				DSDKNDTH
+$PlayerSound	Dethkn	Other	*Gibbed				DSDKNDTH
+$PlayerSound	Dethkn	Other	*Pain100 			DSDKNPAI
+$PlayerSound	Dethkn	Other	*Pain75 			DSDKNPAI
+$PlayerSound	Dethkn	Other	*Pain50 			DSDKNPAI
+$PlayerSound	Dethkn	Other	*Pain25 			DSDKNPAI
+$PlayerSound	Dethkn	Other	*Grunt				DSDKNPAI
+$PlayerSound	Dethkn	Other	*Land				DSDKNPAI
+$PlayerSound	Dethkn	Other	*Jump				DSNONE
+$PlayerSound	Dethkn	Other	*Fist				DSNONE
+$PlayerSound	Dethkn	Other	*UseFail			DSDKNACT
+$PlayerSound	Dethkn	Other	*Falling			DSDKNSIT
+$PlayerSound	Dethkn	Other	*Taunt				DSDKNSIT
+
+//ZSec
+
+$PlayerAlias	ZSecOp	Male	*Death				DSPODTH2
+$PlayerAlias	ZSecOp	Male	*WimpyDeath			DSPODTH1
+$PlayerAlias	ZSecOp	Male	*CrazyDeath			DSPODTH3
+$PlayerSound	ZSecOp	Male	*Pain100 			DSPOPAIN
+$PlayerSound	ZSecOp	Male	*Pain75 			DSPOPAIN
+$PlayerSound	ZSecOp	Male	*Pain50 			DSPOPAIN
+$PlayerSound	ZSecOp	Male	*Pain25 			DSPOPAIN
+$PlayerSound	ZSecOp	Male	*Grunt				DSPOSIT1
+$PlayerSound	ZSecOp	Male	*Land				DSPOPAIN
+$PlayerSound	ZSecOp	Male	*Jump				DSNONE
+$PlayerSound	ZSecOp	Male	*Fist				DSNONE
+$PlayerSound	ZSecOp	Male	*UseFail			DSPOSIT3
+$PlayerSound	ZSecOp	Male	*Taunt				DSPOSIT2
+
+$PlayerAlias	ZSecOp	Female	*Death				DSPODTH2
+$PlayerAlias	ZSecOp	Female	*WimpyDeath			DSPODTH1
+$PlayerAlias	ZSecOp	Female	*CrazyDeath			DSPODTH3
+$PlayerSound	ZSecOp	Female	*Pain100 			DSPOPAIN
+$PlayerSound	ZSecOp	Female	*Pain75 			DSPOPAIN
+$PlayerSound	ZSecOp	Female	*Pain50 			DSPOPAIN
+$PlayerSound	ZSecOp	Female	*Pain25 			DSPOPAIN
+$PlayerSound	ZSecOp	Female	*Grunt				DSPOSIT1
+$PlayerSound	ZSecOp	Female	*Land				DSPOPAIN
+$PlayerSound	ZSecOp	Female	*Jump				DSNONE
+$PlayerSound	ZSecOp	Female	*Fist				DSNONE
+$PlayerSound	ZSecOp	Female	*UseFail			DSPOSIT3
+$PlayerSound	ZSecOp	Female	*Taunt				DSPOSIT2
+
+$PlayerAlias	ZSecOp	Other	*Death				DSPODTH2
+$PlayerAlias	ZSecOp	Other	*WimpyDeath			DSPODTH1
+$PlayerAlias	ZSecOp	Other	*CrazyDeath			DSPODTH3
+$PlayerSound	ZSecOp	Other	*Pain100 			DSPOPAIN
+$PlayerSound	ZSecOp	Other	*Pain75 			DSPOPAIN
+$PlayerSound	ZSecOp	Other	*Pain50 			DSPOPAIN
+$PlayerSound	ZSecOp	Other	*Pain25 			DSPOPAIN
+$PlayerSound	ZSecOp	Other	*Grunt				DSPOSIT1
+$PlayerSound	ZSecOp	Other	*Land				DSPOPAIN
+$PlayerSound	ZSecOp	Other	*Jump				DSNONE
+$PlayerSound	ZSecOp	Other	*Fist				DSNONE
+$PlayerSound	ZSecOp	Other	*UseFail			DSPOSIT3
+$PlayerSound	ZSecOp	Other	*Taunt				DSPOSIT2
+
+//Corpulent
+
+Corpulent/Death										CORPDETH
+Corpulent/Gib										CORPGIBB
+
+$PlayerSound	Profan	Male	*Death				DSNONE
+$PlayerSound	Profan	Male	*XDeath				DSNONE
+$PlayerSound	Profan	Male	*Gibbed				DSNONE
+$PlayerSound	Profan	Male	*Pain100 			CORPPAIN
+$PlayerSound	Profan	Male	*Pain75 			CORPPAIN
+$PlayerSound	Profan	Male	*Pain50 			CORPPAIN
+$PlayerSound	Profan	Male	*Pain25 			CORPPAIN
+$PlayerSound	Profan	Male	*Grunt				CORPPAIN
+$PlayerSound	Profan	Male	*Land				CORPSTEP
+$PlayerSound	Profan	Male	*Jump				DSNONE
+$PlayerSound	Profan	Male	*Fist				DSNONE
+$PlayerSound	Profan	Male	*UseFail			CORPSTEP
+$PlayerSound	Profan	Male	*Falling			DSNONE
+$PlayerSound	Profan	Male	*Taunt				CORPTANT
+
+$PlayerSound	Profan	Female	*Death				DSNONE
+$PlayerSound	Profan	Female	*XDeath				DSNONE
+$PlayerSound	Profan	Female	*Gibbed				DSNONE
+$PlayerSound	Profan	Female	*Pain100 			CORPPAIN
+$PlayerSound	Profan	Female	*Pain75 			CORPPAIN
+$PlayerSound	Profan	Female	*Pain50 			CORPPAIN
+$PlayerSound	Profan	Female	*Pain25 			CORPPAIN
+$PlayerSound	Profan	Female	*Grunt				CORPPAIN
+$PlayerSound	Profan	Female	*Land				CORPSTEP
+$PlayerSound	Profan	Female	*Jump				DSNONE
+$PlayerSound	Profan	Female	*Fist				DSNONE
+$PlayerSound	Profan	Female	*UseFail			CORPSTEP
+$PlayerSound	Profan	Female	*Falling			DSNONE
+$PlayerSound	Profan	Female	*Taunt				CORPTANT
+
+$PlayerSound	Profan	Other	*Death				DSNONE
+$PlayerSound	Profan	Other	*XDeath				DSNONE
+$PlayerSound	Profan	Other	*Gibbed				DSNONE
+$PlayerSound	Profan	Other	*Pain100 			CORPPAIN
+$PlayerSound	Profan	Other	*Pain75 			CORPPAIN
+$PlayerSound	Profan	Other	*Pain50 			CORPPAIN
+$PlayerSound	Profan	Other	*Pain25 			CORPPAIN
+$PlayerSound	Profan	Other	*Grunt				CORPPAIN
+$PlayerSound	Profan	Other	*Land				CORPSTEP
+$PlayerSound	Profan	Other	*Jump				DSNONE
+$PlayerSound	Profan	Other	*Fist				DSNONE
+$PlayerSound	Profan	Other	*UseFail			CORPSTEP
+$PlayerSound	Profan	Other	*Falling			DSNONE
+$PlayerSound	Profan	Other	*Taunt				CORPTANT
+
+//Goliath
+
+Goliath/Death										MACHDETH
+$Limit Goliath/Death 								0
+
+$PlayerSound	Tgolia	Male	*Death				DSNONE
+$PlayerSound	Tgolia	Male	*XDeath				DSNONE
+$PlayerSound	Tgolia	Male	*Gibbed				DSNONE
+$PlayerSound	Tgolia	Male	*Pain100 			DSNONE
+$PlayerSound	Tgolia	Male	*Pain75 			DSNONE
+$PlayerSound	Tgolia	Male	*Pain50 			DSNONE
+$PlayerSound	Tgolia	Male	*Pain25 			DSNONE
+$PlayerSound	Tgolia	Male	*Grunt				MACHSTP1
+$PlayerSound	Tgolia	Male	*Land				MACHSTP2
+$PlayerSound	Tgolia	Male	*Jump				CYBRUSTY
+$PlayerSound	Tgolia	Male	*Fist				DSNONE
+$PlayerSound	Tgolia	Male	*UseFail			CYBRUSTY
+$PlayerSound	Tgolia	Male	*Falling			DSNONE
+$PlayerSound	Tgolia	Male	*Taunt				MACHTANT
+
+$PlayerSound	Tgolia	Female	*Death				DSNONE
+$PlayerSound	Tgolia	Female	*XDeath				DSNONE
+$PlayerSound	Tgolia	Female	*Gibbed				DSNONE
+$PlayerSound	Tgolia	Female	*Pain100 			DSNONE
+$PlayerSound	Tgolia	Female	*Pain75 			DSNONE
+$PlayerSound	Tgolia	Female	*Pain50 			DSNONE
+$PlayerSound	Tgolia	Female	*Pain25 			DSNONE
+$PlayerSound	Tgolia	Female	*Grunt				MACHSTP1
+$PlayerSound	Tgolia	Female	*Land				MACHSTP2
+$PlayerSound	Tgolia	Female	*Jump				CYBRUSTY
+$PlayerSound	Tgolia	Female	*Fist				DSNONE
+$PlayerSound	Tgolia	Female	*UseFail			CYBRUSTY
+$PlayerSound	Tgolia	Female	*Falling			DSNONE
+$PlayerSound	Tgolia	Female	*Taunt				MACHTANT
+
+$PlayerSound	Tgolia	Other	*Death				DSNONE
+$PlayerSound	Tgolia	Other	*XDeath				DSNONE
+$PlayerSound	Tgolia	Other	*Gibbed				DSNONE
+$PlayerSound	Tgolia	Other	*Pain100 			DSNONE
+$PlayerSound	Tgolia	Other	*Pain75 			DSNONE
+$PlayerSound	Tgolia	Other	*Pain50 			DSNONE
+$PlayerSound	Tgolia	Other	*Pain25 			DSNONE
+$PlayerSound	Tgolia	Other	*Grunt				MACHSTP1
+$PlayerSound	Tgolia	Other	*Land				MACHSTP2
+$PlayerSound	Tgolia	Other	*Jump				CYBRUSTY
+$PlayerSound	Tgolia	Other	*Fist				DSNONE
+$PlayerSound	Tgolia	Other	*UseFail			CYBRUSTY
+$PlayerSound	Tgolia	Other	*Falling			DSNONE
+$PlayerSound	Tgolia	Other	*Taunt				MACHTANT

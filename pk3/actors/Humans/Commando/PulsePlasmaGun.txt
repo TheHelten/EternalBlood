@@ -1,0 +1,203 @@
+//Pulse-Plasma Gun.
+Actor "Pulse-Plasma Gun" : Weapon
+{
+   Inventory.PickupMessage "You got the Pulse-Plasma Gun!"
+   Obituary "%o was melted by %k's Plasma."
+   Weapon.AmmoType1 "PulseCell"
+   Weapon.AmmoGive1 25
+   Weapon.AmmoUse1 1
+   Weapon.KickBack 0
+   Weapon.SlotNumber 2
+   +AMMO_OPTIONAL
+   +ALT_AMMO_OPTIONAL
+   +WEAPON.NOAUTOAIM
+   +INVENTORY.UNDROPPABLE
+   States
+   {
+    Spawn:
+	TNT1 A 0
+	Stop
+    Ready:
+	PSMG A 1 A_WeaponReady
+	Loop
+    Deselect:
+	PSMG A 1 A_Lower
+	PSMG A 0 A_Lower
+	Loop
+    Select:
+	PSMG A 1 A_Raise
+	PSMG A 0 A_Raise
+	Loop
+    Fire:
+	PSMG A 0 A_JumpIfInventory("PlasmaFire",1,"FireGo")
+	//PSMG ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+	PSMG EJOTZ 1
+	PSMC AB 1
+	PSMB A 1
+	Goto FireGo
+    FireGo:
+	PSMB A 0 A_JumpIfInventory("PulseCell",1,"FireSuper")
+	PSMB A 0 A_GiveInventory("PlasmaFire",1)
+	PSMB A 0 A_PlaySoundEx("PulsePlasma/Fire","auto",0)
+	PSMB A 0 A_FireCustomMissile("WeakPlasmaRifleShot",Random(-3,3),0,Random(-1,1),Random(-5,-4))
+	PSMB A 0 A_Jump(128,"FireGoAlt")
+	PSMF AB 1 bright
+	PSMB AAA 1
+	PSMB A 0 A_ReFire
+	Goto FireEnd
+    FireGoAlt:
+   	PSMF BA 1 bright
+	PSMB AAA 1
+	PSMB A 0 A_ReFire
+	Goto FireEnd
+    FireSuper:
+    PSMB A 0 A_GiveInventory("PlasmaFire",1)
+    PSMB A 0 A_TakeInventory("PulseCell",1)
+	PSMB A 0 A_PlaySoundEx("PulsePlasma/Fire","SoundSlot10")
+	PSMB A 0 A_FireCustomMissile("PlasmaRifleShot",Random(-3,3),0,Random(-1,1),Random(-5,-4))
+	PSMB A 0 A_Jump(128,"FireSuperAlt")
+	PSMF AB 1 bright
+	PSMB A 1
+	PSMB A 0 A_ReFire
+	Goto FireEnd
+    FireSuperAlt:
+   	PSMF BA 1 bright
+	PSMB A 1
+	PSMB A 0 A_ReFire
+	Goto FireEnd
+    FireEnd:
+	PSMB A 1 A_TakeInventory("PlasmaFire",1)
+	PSMC BA 1 A_TakeInventory("PlasmaFire",1)
+	//PSMG ZYXWVUTSRQPONMLKJIHGFEDCBAAAA 1 A_TakeInventory("PlasmaFire",1)
+	PSMG ZTOJEA 1 A_TakeInventory("PlasmaFire",1)
+	Goto Ready
+    AltFire:
+	PSMB A 0 A_JumpIfInventory("PulseCell",10,"AltFireSuper")
+	Goto Fire+1
+	AltFireSuper:
+	PSMG EJOTZ 1
+	PSMB A 0 A_GiveInventory("PlasmaFire",1)
+	PSMB A 0 A_TakeInventory("PulseCell",10)
+	PSMB A 0 A_PlaySoundEx("Cybruiser/PlasmaFire","SoundSlot10")
+	PSMB AAAAAAAAAA 0 A_FireCustomMissile("NoClipPlasmaRifleShot",Random(-3,3),0,Random(-1,1),Random(-5,-4))
+	PSMF AB 1 bright
+	PSMB A 1
+	PSMB A 0
+	Goto AltFireEnd
+	AltFireEnd:
+	PSMB A 1
+	PSMC BA 1 A_TakeInventory("PlasmaFire",1)
+	PSMG ZYXWVUTSRQPONMLKJIHGFEDCBAAAA 1 A_TakeInventory("PlasmaFire",1)
+	Goto Ready
+   }
+}
+
+Actor "PlasmaFire" : Inventory
+{
+Inventory.MaxAmount 1
+Inventory.Amount 0
+}
+
+Actor "PlasmaRifleShot"
+{
+   Radius 4
+   Height 8
+   Speed 56
+   Health 1
+   Damage (8)
+   Scale 0.75
+   ReactionTime 2
+   PROJECTILE
+   +SKYEXPLODE
+   +FORCEXYBILLBOARD
+   +SHOOTABLE
+   +NOBLOOD
+   +NOTARGETSWITCH
+   +MISSILE
+   -NOBLOCKMAP
+   DeathSound "PulsePlasma/Hit"
+   RenderStyle Add
+   States
+   {
+   Spawn:
+      GREP A 0 
+	  GREP A 0 ThrustThingZ(0,Random(0,5),Random(0,1),1)
+	  GREP ABCDEF 1 Bright
+	  Goto Spawn+2
+   Death:
+      GRED A 0 bright A_Stop
+	  GRED A 0 bright A_ChangeFlag("SHOOTABLE",0)
+      GRED ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.046875)
+      Stop
+   }
+}
+
+Actor "NoClipPlasmaRifleShot" : "PlasmaRifleShot"
+{
+-SHOOTABLE
+-NOTARGETSWITCH
++SKYEXPLODE
+}
+
+/*
+Spawn:
+		GREP A 0 
+	    GREP A 0 ThrustThingZ(0,Random(0,5),Random(0,1),1)
+		GREP ABCDEF 1 Bright
+		Goto Spawn+2
+	Death:
+		GRED ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.046875)
+		Stop
+		
+*/
+
+Actor "WeakPlasmaRifleShot"
+{
+   Radius 2
+   Height 4
+   Speed 56
+   Health 1
+   Damage (4)
+   Scale 0.375
+   ReactionTime 2
+   PROJECTILE
+   +SKYEXPLODE
+   +FORCEXYBILLBOARD
+   +SHOOTABLE
+   +NOBLOOD
+   +NOTARGETSWITCH
+   +MISSILE
+   -NOBLOCKMAP
+   DeathSound "PulsePlasma/Hit"
+   RenderStyle Add
+   States
+   {
+   Spawn:
+      GREP A 0 
+	  GREP A 0 ThrustThingZ(0,Random(0,5),Random(0,1),1)
+	  GREP ABCDEF 1 Bright
+	  Goto Spawn+2
+   Death:
+	  GRED A 0 bright A_Stop
+	  GRED A 0 bright A_ChangeFlag("SHOOTABLE",0)
+      GRED ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.046875)
+      Stop
+   }
+}
+
+Actor PulseCell : Ammo
+{
+	Inventory.PickupMessage "Picked up a Plasma pack."
+	Inventory.Amount 25
+	Inventory.MaxAmount 200
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 200
+	Inventory.Icon "ECLPA0"
+	+INVENTORY.IGNORESKILL
+	States
+	{
+	Spawn:
+		ECLP A 0
+		Stop
+	}
+}
