@@ -1,0 +1,15 @@
+//Since Zandronum didn't want Ghost's cloaking to work online, this is my workaround.
+Actor Action_Give533 : CustomInventory
+{
+   Inventory.Amount 1
+   Inventory.MaxAmount 1
+   -INVBAR
+   States
+   {
+       Use:
+	   TNT1 A 0
+       TNT1 A 0 ACS_ExecuteAlways(533,0,0,0,0) //Hopefully this works.
+	   TNT1 A 0 //POOF!
+       //Fail //To keep.
+   }
+}

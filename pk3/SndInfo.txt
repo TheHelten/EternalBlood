@@ -250,32 +250,6 @@ ZSecShotgun/Load3					ZSGLOAD3
 
 $Random ZSecShotgun/Load 			{ ZSecShotgun/Load1 ZSecShotgun/Load2 ZSecShotgun/Load3 }
 
-//Corpulent
-
-Corpulent/VomitFire					VOMITFIR //Why is there a heavy lack of dumb comments
-Corpulent/VomitHit					VOMITHIT //on hellspawn sounds?
-
-Corpulent/Vomit1					VOMITBL1
-Corpulent/Vomit2					VOMITBL2
-Corpulent/Vomit3					VOMITBL3
-
-$Random Corpulent/Vomit				{ Corpulent/Vomit1 Corpulent/Vomit2 Corpulent/Vomit3 }
-
-Corpulent/Choke1					CHOKEBL1
-Corpulent/Choke2					CHOKEBL2
-Corpulent/Choke3					CHOKEBL3
-Corpulent/Choke4					CHOKEBL4
-Corpulent/Choke5					CHOKEBL5
-
-$Random Corpulent/Choking			{ Corpulent/Choke1 Corpulent/Choke2 Corpulent/Choke3 Corpulent/Choke4 Corpulent/Choke5 }
-
-$Limit Corpulent/Vomit1				0
-$Limit Corpulent/Vomit2				0
-$Limit Corpulent/Vomit3				0
-$Limit Corpulent/Vomit				0
-$Limit Corpulent/VomitFire			0
-$Limit Corpulent/VomitHit			3
-
 //Sound Classes\\
 
 //Cybruiser---
@@ -419,56 +393,6 @@ $PlayerSound	ZSecOp	Other	*Jump				DSNONE
 $PlayerSound	ZSecOp	Other	*Fist				DSNONE
 $PlayerSound	ZSecOp	Other	*UseFail			DSPOSIT3
 $PlayerSound	ZSecOp	Other	*Taunt				DSPOSIT2
-
-//Corpulent
-
-Corpulent/Death										CORPDETH
-Corpulent/Gib										CORPGIBB
-
-$PlayerSound	Profan	Male	*Death				DSNONE
-$PlayerSound	Profan	Male	*XDeath				DSNONE
-$PlayerSound	Profan	Male	*Gibbed				DSNONE
-$PlayerSound	Profan	Male	*Pain100 			CORPPAIN
-$PlayerSound	Profan	Male	*Pain75 			CORPPAIN
-$PlayerSound	Profan	Male	*Pain50 			CORPPAIN
-$PlayerSound	Profan	Male	*Pain25 			CORPPAIN
-$PlayerSound	Profan	Male	*Grunt				CORPPAIN
-$PlayerSound	Profan	Male	*Land				CORPSTEP
-$PlayerSound	Profan	Male	*Jump				DSNONE
-$PlayerSound	Profan	Male	*Fist				DSNONE
-$PlayerSound	Profan	Male	*UseFail			CORPSTEP
-$PlayerSound	Profan	Male	*Falling			DSNONE
-$PlayerSound	Profan	Male	*Taunt				CORPTANT
-
-$PlayerSound	Profan	Female	*Death				DSNONE
-$PlayerSound	Profan	Female	*XDeath				DSNONE
-$PlayerSound	Profan	Female	*Gibbed				DSNONE
-$PlayerSound	Profan	Female	*Pain100 			CORPPAIN
-$PlayerSound	Profan	Female	*Pain75 			CORPPAIN
-$PlayerSound	Profan	Female	*Pain50 			CORPPAIN
-$PlayerSound	Profan	Female	*Pain25 			CORPPAIN
-$PlayerSound	Profan	Female	*Grunt				CORPPAIN
-$PlayerSound	Profan	Female	*Land				CORPSTEP
-$PlayerSound	Profan	Female	*Jump				DSNONE
-$PlayerSound	Profan	Female	*Fist				DSNONE
-$PlayerSound	Profan	Female	*UseFail			CORPSTEP
-$PlayerSound	Profan	Female	*Falling			DSNONE
-$PlayerSound	Profan	Female	*Taunt				CORPTANT
-
-$PlayerSound	Profan	Other	*Death				DSNONE
-$PlayerSound	Profan	Other	*XDeath				DSNONE
-$PlayerSound	Profan	Other	*Gibbed				DSNONE
-$PlayerSound	Profan	Other	*Pain100 			CORPPAIN
-$PlayerSound	Profan	Other	*Pain75 			CORPPAIN
-$PlayerSound	Profan	Other	*Pain50 			CORPPAIN
-$PlayerSound	Profan	Other	*Pain25 			CORPPAIN
-$PlayerSound	Profan	Other	*Grunt				CORPPAIN
-$PlayerSound	Profan	Other	*Land				CORPSTEP
-$PlayerSound	Profan	Other	*Jump				DSNONE
-$PlayerSound	Profan	Other	*Fist				DSNONE
-$PlayerSound	Profan	Other	*UseFail			CORPSTEP
-$PlayerSound	Profan	Other	*Falling			DSNONE
-$PlayerSound	Profan	Other	*Taunt				CORPTANT
 
 //Goliath
 

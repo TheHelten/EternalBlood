@@ -23,9 +23,8 @@ necessary to play the actual wad...
 
 //Ghost---
 
-#Include "actors/humans/ghost/ComplicatedBullshit.txt" //Cloaking
-
 #Include "actors/humans/ghost/Ghost.txt"
+//#Include "actors/humans/ghost/Cloaker.txt"
 #Include "actors/humans/ghost/GRifle.txt"
 #Include "actors/humans/ghost/PPistol.txt"
 #Include "actors/humans/ghost/Knife.txt"
@@ -66,8 +65,3 @@ necessary to play the actual wad...
 #Include "actors/hellspawn/zsec/ZShotgun.txt"
 #Include "actors/hellspawn/zsec/ZSMG.txt"
 #Include "actors/hellspawn/zsec/ZFlare.txt"
-
-//Corpulent---
-
-#Include "actors/hellspawn/corpulent/CorpulentClass.txt"
-#Include "actors/hellspawn/corpulent/CorpulentMouth.txt"

@@ -16,8 +16,7 @@ Actor GhostClass : PlayerPawn
 	Player.SoundClass "Marine"
 	Player.CrouchSprite ""
 	Player.StartItem "GreenArmor" //No value, so it presents 100 points of Green-Armor.
-	Player.StartItem "Action_Cloak"
-	Player.StartItem "Action_Uncloak"
+	//Player.StartItem "Action_Give533"
 	Player.StartItem "Ghost-Rifle", 1
 	Player.StartItem "GhostShells", 30
 	Player.StartItem "Plasma-Pistol", 1
@@ -36,8 +35,6 @@ Actor GhostClass : PlayerPawn
 	{
 	DAYUMSON:
 		PLA3 A 0
-		PLA3 A 0 ACS_ExecuteAlways(533,0,0,0,0)
-		PLA3 A 0 ACS_ExecuteAlways(534,0,0,0,0)
 		PLA3 A 0
 		Goto Spawn
 	Spawn:

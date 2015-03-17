@@ -31,14 +31,15 @@ Actor "Assault Rifle" : Weapon
 	  HVRG A 0 A_Raise
       Loop
    Fire:
-      HVRG A 1 A_JumpIfInventory("AssaultClips",1,"FireGo")
+      HVRG A 0 A_JumpIfInventory("AssaultClips",1,"FireGo")
+	  HVRG A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
 	  Goto ReloadCheck
    FireGo:
       HVRF A 0 bright A_TakeInventory("AssaultClips",1)
 	  HVRF A 0 bright A_PlayWeaponSound("AssaultRifle/Fire")
 	  HVRF A 0 bright A_GunFlash
-      HVRF A 1 bright A_FireBullets(3.2,1.6,-1,4,"BulletPuff")
-      HVRF B 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
+      HVRF A 0 bright A_FireBullets(3.2,1.6,-1,4,"BulletPuff")
+      HVRF AB 1 bright A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
       HVRG A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
 	  HVRG A 0 A_ReFire
       Goto Ready

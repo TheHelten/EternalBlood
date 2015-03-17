@@ -14,7 +14,7 @@ AddPlayerClass GoliathClass
 AddPlayerClass CybruiserClass
 AddPlayerClass Guardianclass
 AddPlayerClass ZSecClass
-AddPlayerClass CorpulentClass //Fresh from R101, taken from Helten's "Scurge Hive".
+//AddPlayerClass
 //AddPlayerClass
 
 //Aeratins

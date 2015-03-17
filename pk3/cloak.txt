@@ -39,24 +39,23 @@ Script 998 (Void)
 	Terminate;
 }
 
-
 Script 531 ENTER
 {
-	If (CheckInventory("Ghost-Knife") == 1)
+	If(CheckActorClass(0,"GhostClass"))
 	{
-		SetActorState(0,"DAYUMSON");
-		SetActorProperty(0, APROP_RENDERSTYLE, STYLE_TRANSLUCENT);
-		Terminate;
+		//UseInventory("Action_Give533");
+		ACS_ExecuteAlways(533, 0);
+		ACS_ExecuteAlways(534, 0);
 	}
 }
 
 Script 532 RESPAWN
 {
-	If (CheckInventory("Ghost-Knife") == 1)
+	If(CheckActorClass(0,"GhostClass"))
 	{
-		SetActorState(0,"DAYUMSON");
-		SetActorProperty(0, APROP_RENDERSTYLE, STYLE_TRANSLUCENT);
-		Terminate;
+		//UseInventory("Action_Give533");
+		ACS_ExecuteAlways(533, 0);
+		ACS_ExecuteAlways(534, 0);
 	}
 }
 
@@ -64,9 +63,9 @@ Script 533 (Void) //Ghost cloak code, weeeee
 {
 	int regendelay;
 	int buffer = 0.0;
-	//int alpha = 1.0; //This shit didn't even work online anyhow.
+	int alpha = 1.0;
 	
-	//SetActorProperty(0, APROP_RENDERSTYLE, STYLE_TRANSLUCENT);
+	SetActorProperty(0, APROP_RENDERSTYLE, STYLE_TRANSLUCENT);
 	
 	While(1)
 	{
@@ -82,45 +81,13 @@ Script 533 (Void) //Ghost cloak code, weeeee
 			If (GetPlayerInput(-1, INPUT_BUTTONS) & BT_ALTATTACK || CheckInventory("CloakEnergy") < 1)
 			{
 				ActivatorSound("Ghost/Uncloak",75);
-				TakeInventory("Cloaked",1);
-				SetActorProperty(0, APROP_ALPHA, 0.05);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.1);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.15);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.2);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.25);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.3);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.35);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.4);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.45);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.5);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.55);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.6);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.65);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.7);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.75);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.8);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.85);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.9);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.95);
-				Delay(1);
+				While(alpha <= 0.96)
+				{
+					alpha+=0.05;
+					TakeInventory("Cloaked",1);
+					SetActorProperty(0, APROP_ALPHA, alpha);
+					Delay(1);
+				}
 				SetActorProperty(0, APROP_ALPHA, 1.0);
 				regendelay = -12;
 			}
@@ -139,44 +106,12 @@ Script 533 (Void) //Ghost cloak code, weeeee
 				GiveInventory("Cloaked", 1);
 				TakeInventory("CloakEnergy",20);
 				ActivatorSound("Ghost/Cloak",75);
-				SetActorProperty(0, APROP_ALPHA, 0.95);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.9);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.85);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.8);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.75);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.7);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.65);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.6);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.55);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.5);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.45);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.4);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.35);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.3);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.25);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.2);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.15);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.1);
-				Delay(1);
-				SetActorProperty(0, APROP_ALPHA, 0.05);
-				Delay(1);
+				While(alpha > 0.10)
+				{
+					alpha-=0.05;
+					SetActorProperty(0, APROP_ALPHA, alpha);
+					Delay(1);
+				}
 				SetActorProperty(0, APROP_ALPHA, 0.01);
 			}
 		}
