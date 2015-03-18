@@ -7,7 +7,7 @@ Actor "Plasma-Pistol" : Weapon
    Weapon.AmmoGive1 45
    Weapon.AmmoUse1 1
    Weapon.AmmoUse2 1
-   Weapon.AmmoGive2 500
+   Weapon.AmmoGive2 100
    Weapon.AmmoType2 "CloakEnergy"
    Weapon.KickBack 0
    Weapon.SlotNumber 2
@@ -59,7 +59,7 @@ Actor "PlasmaShot"
    Radius 3
    Height 6
    Speed 48
-   Damage (8)
+   Damage (5)
    Scale 0.6
    PROJECTILE
    +SKYEXPLODE

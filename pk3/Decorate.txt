@@ -24,7 +24,6 @@ necessary to play the actual wad...
 //Ghost---
 
 #Include "actors/humans/ghost/Ghost.txt"
-//#Include "actors/humans/ghost/Cloaker.txt"
 #Include "actors/humans/ghost/GRifle.txt"
 #Include "actors/humans/ghost/PPistol.txt"
 #Include "actors/humans/ghost/Knife.txt"

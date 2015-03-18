@@ -8,7 +8,7 @@ Actor "Ghost-Knife" : Weapon
   +AMMO_OPTIONAL
   +INVENTORY.UNDROPPABLE
   Weapon.AmmoUse2 1
-  Weapon.AmmoGive2 500
+  Weapon.AmmoGive2 100
   Weapon.AmmoType2 "CloakEnergy"
   Obituary "%o was sliced by %k's Knife."
   Weapon.KickBack 0

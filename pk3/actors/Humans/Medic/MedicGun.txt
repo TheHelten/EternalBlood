@@ -14,6 +14,7 @@ Actor "Patch Kit" : Weapon
 	+ALT_AMMO_OPTIONAL
 	+NOALERT
 	+INVENTORY.UNDROPPABLE
+	+WEAPON.NOAUTOFIRE
 	Obituary "%o somehow died from being healed."
 	States
 	{
